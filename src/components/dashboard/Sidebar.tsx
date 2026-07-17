@@ -1,5 +1,20 @@
 import { useEffect, useState } from 'react'
-import { LayoutDashboard, Users, Folder, Calendar, Settings, Zap, Menu, X, FlaskConical } from 'lucide-react'
+import {
+  LayoutDashboard,
+  MessageCircle,
+  Calendar,
+  CheckSquare,
+  BookOpen,
+  ListTodo,
+  Globe,
+  FileQuestion,
+  Users,
+  LayoutGrid,
+  Settings,
+  Zap,
+  Menu,
+  X,
+} from 'lucide-react'
 
 export function Sidebar() {
   const [open, setOpen] = useState(false)
@@ -18,24 +33,39 @@ export function Sidebar() {
   }, [open])
 
   const navLinks = (
-    <nav className="space-y-2">
+    <nav className="space-y-1">
       <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-white bg-blue-600 rounded-lg font-semibold">
-        <LayoutDashboard className="w-5 h-5" /> Home
+        <LayoutDashboard className="w-5 h-5" /> Dashboard
       </a>
       <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <Users className="w-5 h-5" /> My Team
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <Folder className="w-5 h-5" /> Documents
+        <MessageCircle className="w-5 h-5" /> Discuss
       </a>
       <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
         <Calendar className="w-5 h-5" /> Calendar
       </a>
       <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <Settings className="w-5 h-5" /> Settings
+        <CheckSquare className="w-5 h-5" /> To-do
       </a>
       <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <FlaskConical className="w-5 h-5" /> Test Item
+        <BookOpen className="w-5 h-5" /> Library
+      </a>
+      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+        <ListTodo className="w-5 h-5" /> Tasks
+      </a>
+      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+        <Globe className="w-5 h-5" /> Internal Portal
+      </a>
+      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+        <FileQuestion className="w-5 h-5" /> Surveys
+      </a>
+      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+        <Users className="w-5 h-5" /> Employees
+      </a>
+      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+        <LayoutGrid className="w-5 h-5" /> Apps
+      </a>
+      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+        <Settings className="w-5 h-5" /> Settings
       </a>
     </nav>
   )
