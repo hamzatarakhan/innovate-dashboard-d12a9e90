@@ -1,665 +1,416 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Switch } from "@/components/ui/switch";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Progress } from "@/components/ui/progress";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Separator } from "@/components/ui/separator";
+import { createFileRoute } from '@tanstack/react-router'
+import { useState } from 'react'
+import { toast } from 'sonner'
 import {
+  CheckCircle,
+  MessageSquare,
+  Cloudy,
   Bell,
-  Check,
-  Copy,
-  Info,
-  Sparkles,
-  AlertTriangle,
-  CheckCircle2,
-  XCircle,
-  Palette,
-  Type,
-  Component,
-  Layout,
   Zap,
-} from "lucide-react";
-import { toast } from "sonner";
+  Copy,
+  Sparkles,
+  ArrowRight,
+  LayoutDashboard,
+  Calendar,
+} from 'lucide-react'
 
-export const Route = createFileRoute("/design-system")({
-  component: DesignSystemPage,
+export const Route = createFileRoute('/design-system')({
   head: () => ({
     meta: [
-      { title: "Design System — Innovate Dashboard" },
+      { title: 'Design System — Innovate Inc.' },
       {
-        name: "description",
+        name: 'description',
         content:
-          "Complete design system documentation: colors, typography, components, spacing, and interaction patterns for the Innovate Dashboard.",
+          'The exact colors, surfaces, typography, radii and components used across the Innovate Inc. intranet — the single source of truth for every new page.',
       },
     ],
   }),
-});
+  component: DesignSystemPage,
+})
 
-// ---------------- Design Tokens (source of truth for the docs) ----------------
-const COLOR_TOKENS: { name: string; token: string; role: string }[] = [
-  { name: "Background", token: "--background", role: "Page background" },
-  { name: "Foreground", token: "--foreground", role: "Default text" },
-  { name: "Card", token: "--card", role: "Card surface" },
-  { name: "Card Foreground", token: "--card-foreground", role: "Text on card" },
-  { name: "Popover", token: "--popover", role: "Popover surface" },
-  { name: "Primary", token: "--primary", role: "Primary action" },
-  { name: "Primary Foreground", token: "--primary-foreground", role: "Text on primary" },
-  { name: "Secondary", token: "--secondary", role: "Secondary surface" },
-  { name: "Muted", token: "--muted", role: "Muted surface" },
-  { name: "Muted Foreground", token: "--muted-foreground", role: "Secondary text" },
-  { name: "Accent", token: "--accent", role: "Hover / accent surface" },
-  { name: "Destructive", token: "--destructive", role: "Danger / delete" },
-  { name: "Border", token: "--border", role: "Borders & dividers" },
-  { name: "Input", token: "--input", role: "Form field border" },
-  { name: "Ring", token: "--ring", role: "Focus ring" },
-];
+// ---------- Real tokens actually used in this project ----------
+const BG_GRADIENT = 'from-blue-100 via-purple-100 to-pink-100'
 
-const CHART_TOKENS = ["--chart-1", "--chart-2", "--chart-3", "--chart-4", "--chart-5"];
+const BRAND = [
+  { name: 'Brand / Primary', cls: 'bg-blue-600', hex: '#2563eb', use: 'Logo tile, active nav, primary buttons' },
+  { name: 'Brand Hover', cls: 'bg-blue-700', hex: '#1d4ed8', use: 'Primary button hover' },
+  { name: 'Brand Tint', cls: 'bg-blue-50', hex: '#eff6ff', use: 'Nav hover background' },
+  { name: 'Brand Text', cls: 'text-blue-600', hex: '#2563eb', use: 'Nav hover text, links' },
+]
 
-function CopyableToken({ label }: { label: string }) {
+const TEXT_SCALE = [
+  { name: 'Heading', cls: 'text-gray-900', hex: '#111827', use: 'Page titles, greetings' },
+  { name: 'Body', cls: 'text-gray-800', hex: '#1f2937', use: 'Default body text' },
+  { name: 'Nav / Muted body', cls: 'text-gray-600', hex: '#4b5563', use: 'Sidebar links, secondary body' },
+  { name: 'Caption', cls: 'text-gray-500', hex: '#6b7280', use: 'Meta info, date/time, hints' },
+  { name: 'Disabled', cls: 'text-gray-400', hex: '#9ca3af', use: 'Placeholder, disabled' },
+]
+
+const STATUS = [
+  { name: 'Success', cls: 'text-green-500', hex: '#22c55e', use: 'Tasks completed, positive stats' },
+  { name: 'Info', cls: 'text-blue-500', hex: '#3b82f6', use: 'Messages, informational icons' },
+  { name: 'Accent', cls: 'text-indigo-500', hex: '#6366f1', use: 'Weather, secondary highlight' },
+  { name: 'Warning', cls: 'text-yellow-500', hex: '#eab308', use: 'Attention, badges' },
+  { name: 'Danger', cls: 'text-red-500', hex: '#ef4444', use: 'Errors, destructive actions' },
+]
+
+const TINTED_CARDS = [
+  { name: 'Blue', bg: 'bg-blue-100/50', text: 'text-blue-800', icon: 'text-blue-600' },
+  { name: 'Green', bg: 'bg-green-100/50', text: 'text-green-800', icon: 'text-green-600' },
+  { name: 'Purple', bg: 'bg-purple-100/50', text: 'text-purple-800', icon: 'text-purple-600' },
+  { name: 'Orange', bg: 'bg-orange-100/50', text: 'text-orange-800', icon: 'text-orange-600' },
+  { name: 'Red', bg: 'bg-red-100/50', text: 'text-red-800', icon: 'text-red-600' },
+  { name: 'Indigo', bg: 'bg-indigo-100/50', text: 'text-indigo-800', icon: 'text-indigo-600' },
+]
+
+const STICKY_COLORS = [
+  { name: 'Yellow', cls: 'bg-yellow-200' },
+  { name: 'Pink', cls: 'bg-pink-200' },
+  { name: 'Blue', cls: 'bg-blue-200' },
+  { name: 'Green', cls: 'bg-green-200' },
+  { name: 'Purple', cls: 'bg-purple-200' },
+]
+
+function Copyable({ text }: { text: string }) {
   return (
     <button
       onClick={() => {
-        navigator.clipboard.writeText(label);
-        toast.success("Copied", { description: label });
+        navigator.clipboard.writeText(text)
+        toast.success('Copied', { description: text })
       }}
-      className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+      className="inline-flex items-center gap-1.5 rounded-md bg-gray-100 hover:bg-gray-200 px-2 py-0.5 font-mono text-xs text-gray-700 transition-colors"
     >
-      {label}
-      <Copy className="h-3 w-3" />
+      {text}
+      <Copy className="w-3 h-3" />
     </button>
-  );
+  )
 }
 
-function ColorSwatch({ name, token, role }: { name: string; token: string; role: string }) {
+function SectionTitle({ n, title, sub }: { n: string; title: string; sub: string }) {
   return (
-    <div className="group rounded-xl border border-border bg-card overflow-hidden">
-      <div
-        className="h-20 w-full"
-        style={{ background: `var(${token})` }}
-      />
-      <div className="p-3 space-y-1">
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-card-foreground">{name}</span>
-        </div>
-        <p className="text-xs text-muted-foreground">{role}</p>
-        <CopyableToken label={`bg-${token.replace("--", "").replace("color-", "")}`} />
-      </div>
-    </div>
-  );
-}
-
-function SectionHeader({
-  icon: Icon,
-  title,
-  description,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="mb-6 flex items-start gap-3">
-      <div className="rounded-lg bg-primary/10 p-2 text-primary">
-        <Icon className="h-5 w-5" />
-      </div>
+    <div className="mb-6 flex items-baseline gap-3">
+      <span className="font-mono text-sm text-blue-600 font-semibold">{n}</span>
       <div>
-        <h2 className="text-2xl font-bold text-foreground tracking-tight">{title}</h2>
-        <p className="text-sm text-muted-foreground mt-0.5">{description}</p>
+        <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+        <p className="text-gray-500 text-sm mt-0.5">{sub}</p>
       </div>
     </div>
-  );
+  )
 }
 
 function DesignSystemPage() {
-  const [progress, setProgress] = useState(60);
+  const [note, setNote] = useState('This is a sticky note')
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Hero */}
-      <header className="border-b border-border bg-gradient-to-br from-primary/5 via-background to-accent/20">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <Badge variant="secondary" className="mb-4">
-            <Sparkles className="h-3 w-3 mr-1" /> v1.0 · Living Document
-          </Badge>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-            Innovate Design System
+    <div className="text-gray-800 relative min-h-screen">
+      <div className={`fixed inset-0 bg-gradient-to-br ${BG_GRADIENT} -z-10`} />
+
+      <main className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-10 space-y-14">
+        {/* Hero */}
+        <header className="glassmorphism rounded-xl p-8 fade-in">
+          <div className="flex items-center gap-2 text-blue-600 text-sm font-semibold mb-3">
+            <Sparkles className="w-4 h-4" /> Innovate Inc. · Design System v1
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
+            The look & feel of every page
           </h1>
-          <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-            A single source of truth for colors, typography, components, spacing and
-            interaction patterns. Every new page must follow the tokens below —
-            never hardcode colors, shadows, or spacing.
+          <p className="mt-3 max-w-2xl text-gray-600">
+            This is a mirror of the tokens actually used across the dashboard, login,
+            blog details and quick-access pages. Every new page must reuse these — no
+            new colors, no ad-hoc shadows, no off-brand fonts.
           </p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            <Badge variant="outline">Tailwind v4</Badge>
-            <Badge variant="outline">shadcn/ui</Badge>
-            <Badge variant="outline">Semantic Tokens</Badge>
-            <Badge variant="outline">Dark-mode ready</Badge>
-          </div>
-        </div>
-      </header>
+        </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-12 space-y-16">
-        {/* Principles */}
+        {/* 01 · Background */}
         <section>
-          <SectionHeader
-            icon={Zap}
-            title="Core Principles"
-            description="Rules the AI (and humans) must follow when building any new page."
+          <SectionTitle
+            n="01"
+            title="Page Background"
+            sub="Every page sits on the same fixed gradient. Content floats on glass cards above it."
           />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                t: "Use semantic tokens",
-                d: "Always use bg-primary, text-foreground, border-border. Never text-white, bg-[#fff], or bg-black.",
-              },
-              {
-                t: "shadcn components first",
-                d: "Reuse Button, Card, Input, Dialog etc. Only build custom when composition can't cover it.",
-              },
-              {
-                t: "Glass + subtle depth",
-                d: "Use .glassmorphism, soft shadows, and rounded-2xl on top-level cards. Avoid heavy borders.",
-              },
-              {
-                t: "Motion is purposeful",
-                d: "Use .fade-in / .card-hover-effect. Keep durations 200–400ms and easing smooth.",
-              },
-            ].map((p) => (
-              <Card key={p.t} className="card-hover-effect">
-                <CardHeader>
-                  <CardTitle className="text-base">{p.t}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{p.d}</p>
-                </CardContent>
-              </Card>
+          <div className={`rounded-xl bg-gradient-to-br ${BG_GRADIENT} h-40 border border-white/60 flex items-center justify-center`}>
+            <Copyable text={`bg-gradient-to-br ${BG_GRADIENT}`} />
+          </div>
+          <p className="mt-3 text-sm text-gray-500">
+            Wrap the page body with{' '}
+            <code className="px-1.5 py-0.5 rounded bg-gray-100 text-gray-700">
+              &lt;div className="fixed inset-0 bg-gradient-to-br ... -z-10" /&gt;
+            </code>{' '}
+            so the gradient covers the full viewport on long pages.
+          </p>
+        </section>
+
+        {/* 02 · Brand */}
+        <section>
+          <SectionTitle n="02" title="Brand Color — Blue 600" sub="The only brand color. Use it for primary actions, active nav, and the logo tile." />
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {BRAND.map((c) => (
+              <div key={c.cls} className="glassmorphism rounded-xl overflow-hidden">
+                <div className={`${c.cls} h-20 flex items-center justify-center`}>
+                  <span className="text-white font-mono text-sm">{c.hex}</span>
+                </div>
+                <div className="p-3 space-y-1">
+                  <p className="font-semibold text-gray-900 text-sm">{c.name}</p>
+                  <p className="text-xs text-gray-500">{c.use}</p>
+                  <Copyable text={c.cls} />
+                </div>
+              </div>
             ))}
           </div>
         </section>
 
-        {/* Colors */}
+        {/* 03 · Text scale */}
         <section>
-          <SectionHeader
-            icon={Palette}
-            title="Color System"
-            description="Semantic tokens defined in src/styles.css. Click any swatch to copy its Tailwind class."
-          />
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            {COLOR_TOKENS.map((c) => (
-              <ColorSwatch key={c.token} {...c} />
-            ))}
-          </div>
-
-          <h3 className="mt-8 mb-3 text-lg font-semibold text-foreground">Chart Palette</h3>
-          <div className="grid grid-cols-5 gap-3">
-            {CHART_TOKENS.map((t, i) => (
-              <div key={t} className="rounded-xl border border-border overflow-hidden">
-                <div className="h-16" style={{ background: `var(${t})` }} />
-                <div className="p-2 text-center text-xs font-mono text-muted-foreground">
-                  chart-{i + 1}
+          <SectionTitle n="03" title="Text Colors" sub="Five-step gray scale. Never invent a new gray." />
+          <div className="glassmorphism rounded-xl divide-y divide-gray-200/60">
+            {TEXT_SCALE.map((t) => (
+              <div key={t.cls} className="p-4 flex items-center justify-between gap-4">
+                <div className="flex-1">
+                  <p className={`${t.cls} text-lg font-medium`}>{t.name} — The quick brown fox</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{t.use}</p>
                 </div>
+                <Copyable text={t.cls} />
               </div>
             ))}
           </div>
-
-          <Alert className="mt-8">
-            <Info className="h-4 w-4" />
-            <AlertTitle>Rule</AlertTitle>
-            <AlertDescription>
-              Never use raw hex, rgb, or Tailwind's default palette (like <code>bg-blue-500</code>).
-              Always use semantic tokens so dark mode and re-theming work automatically.
-            </AlertDescription>
-          </Alert>
         </section>
 
-        {/* Typography */}
+        {/* 04 · Status */}
         <section>
-          <SectionHeader
-            icon={Type}
-            title="Typography"
-            description="System sans stack. Heading weights are 600–700, body is 400–500."
-          />
-          <Card>
-            <CardContent className="p-8 space-y-6">
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                  Display · text-5xl · font-bold
-                </p>
-                <p className="text-5xl font-bold tracking-tight">The quick brown fox</p>
+          <SectionTitle n="04" title="Status & Accent Colors" sub="Only for icons and inline badges — never as page backgrounds." />
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {STATUS.map((s) => (
+              <div key={s.cls} className="glassmorphism rounded-xl p-4 flex flex-col items-start gap-2">
+                <CheckCircle className={`${s.cls} w-8 h-8`} />
+                <p className="font-semibold text-gray-900 text-sm">{s.name}</p>
+                <p className="text-xs text-gray-500">{s.use}</p>
+                <Copyable text={s.cls} />
               </div>
-              <Separator />
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                  H1 · text-4xl · font-bold
-                </p>
-                <p className="text-4xl font-bold tracking-tight">Page title heading</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                  H2 · text-2xl · font-semibold
-                </p>
-                <p className="text-2xl font-semibold">Section heading</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                  H3 · text-lg · font-semibold
-                </p>
-                <p className="text-lg font-semibold">Subsection heading</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                  Body · text-base
-                </p>
-                <p className="text-base text-foreground">
-                  Body copy sits at 16px with relaxed leading. Use{" "}
-                  <code className="px-1.5 py-0.5 rounded bg-muted text-sm">text-muted-foreground</code>{" "}
-                  for secondary text.
-                </p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
-                  Caption · text-sm · text-muted-foreground
-                </p>
-                <p className="text-sm text-muted-foreground">Helper and caption text.</p>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Buttons */}
-        <section>
-          <SectionHeader
-            icon={Component}
-            title="Buttons"
-            description="Six variants × four sizes. Icons use lucide-react at h-4 w-4."
-          />
-          <Card>
-            <CardContent className="p-8 space-y-8">
-              <div>
-                <h4 className="mb-3 text-sm font-medium text-muted-foreground">Variants</h4>
-                <div className="flex flex-wrap gap-3">
-                  <Button>Default</Button>
-                  <Button variant="secondary">Secondary</Button>
-                  <Button variant="outline">Outline</Button>
-                  <Button variant="ghost">Ghost</Button>
-                  <Button variant="link">Link</Button>
-                  <Button variant="destructive">Destructive</Button>
-                </div>
-              </div>
-              <Separator />
-              <div>
-                <h4 className="mb-3 text-sm font-medium text-muted-foreground">Sizes</h4>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button size="sm">Small</Button>
-                  <Button>Default</Button>
-                  <Button size="lg">Large</Button>
-                  <Button size="icon" aria-label="Notifications">
-                    <Bell className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-              <Separator />
-              <div>
-                <h4 className="mb-3 text-sm font-medium text-muted-foreground">With icons</h4>
-                <div className="flex flex-wrap gap-3">
-                  <Button>
-                    <Check className="h-4 w-4" /> Confirm
-                  </Button>
-                  <Button variant="outline">
-                    <Sparkles className="h-4 w-4" /> Generate
-                  </Button>
-                  <Button variant="destructive">
-                    <XCircle className="h-4 w-4" /> Delete
-                  </Button>
-                </div>
-              </div>
-              <Separator />
-              <div>
-                <h4 className="mb-3 text-sm font-medium text-muted-foreground">States</h4>
-                <div className="flex flex-wrap gap-3">
-                  <Button disabled>Disabled</Button>
-                  <Button className="opacity-100">
-                    <span className="inline-block h-3 w-3 rounded-full border-2 border-primary-foreground border-t-transparent animate-spin" />
-                    Loading
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Forms */}
-        <section>
-          <SectionHeader
-            icon={Layout}
-            title="Form Elements"
-            description="Inputs are h-10 by default with rounded-md, focus ring uses --ring."
-          />
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Inputs</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-1.5">
-                  <Label htmlFor="ds-name">Full name</Label>
-                  <Input id="ds-name" placeholder="Ada Lovelace" />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="ds-msg">Message</Label>
-                  <Textarea id="ds-msg" placeholder="Say something…" />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="ds-err">With error</Label>
-                  <Input
-                    id="ds-err"
-                    aria-invalid
-                    className="border-destructive focus-visible:ring-destructive"
-                    defaultValue="invalid@"
-                  />
-                  <p className="text-xs text-destructive">Please enter a valid email.</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Toggles & selectors</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="ds-notif">Email notifications</Label>
-                  <Switch id="ds-notif" defaultChecked />
-                </div>
-                <div className="flex items-center gap-2">
-                  <Checkbox id="ds-tos" defaultChecked />
-                  <Label htmlFor="ds-tos" className="text-sm font-normal">
-                    I agree to the terms
-                  </Label>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <Label>Onboarding</Label>
-                    <span className="text-muted-foreground">{progress}%</span>
-                  </div>
-                  <Progress value={progress} />
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="outline" onClick={() => setProgress((p) => Math.max(0, p - 10))}>
-                      -10
-                    </Button>
-                    <Button size="sm" variant="outline" onClick={() => setProgress((p) => Math.min(100, p + 10))}>
-                      +10
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            ))}
           </div>
         </section>
 
-        {/* Badges & Alerts */}
+        {/* 05 · Surfaces */}
         <section>
-          <SectionHeader
-            icon={Bell}
-            title="Feedback & Status"
-            description="Badges for taxonomy, alerts for inline messages, toasts for transient feedback."
-          />
-          <Card>
-            <CardContent className="p-8 space-y-6">
-              <div>
-                <h4 className="mb-3 text-sm font-medium text-muted-foreground">Badges</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Default</Badge>
-                  <Badge variant="secondary">Secondary</Badge>
-                  <Badge variant="outline">Outline</Badge>
-                  <Badge variant="destructive">Destructive</Badge>
-                  <Badge className="bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border-transparent">
-                    <CheckCircle2 className="h-3 w-3 mr-1" /> Success
-                  </Badge>
-                  <Badge className="bg-amber-500/15 text-amber-700 dark:text-amber-400 border-transparent">
-                    <AlertTriangle className="h-3 w-3 mr-1" /> Warning
-                  </Badge>
-                </div>
-              </div>
-              <Separator />
-              <div className="space-y-3">
-                <Alert>
-                  <Info className="h-4 w-4" />
-                  <AlertTitle>Heads up</AlertTitle>
-                  <AlertDescription>Informational alert for neutral context.</AlertDescription>
-                </Alert>
-                <Alert variant="destructive">
-                  <XCircle className="h-4 w-4" />
-                  <AlertTitle>Something went wrong</AlertTitle>
-                  <AlertDescription>Use for irreversible errors.</AlertDescription>
-                </Alert>
-              </div>
-              <Separator />
-              <div>
-                <h4 className="mb-3 text-sm font-medium text-muted-foreground">Toasts</h4>
-                <div className="flex flex-wrap gap-3">
-                  <Button variant="outline" onClick={() => toast.success("Saved successfully")}>
-                    Success toast
-                  </Button>
-                  <Button variant="outline" onClick={() => toast.error("Something failed")}>
-                    Error toast
-                  </Button>
-                  <Button variant="outline" onClick={() => toast("Heads up", { description: "Neutral message" })}>
-                    Info toast
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Cards & Surfaces */}
-        <section>
-          <SectionHeader
-            icon={Layout}
-            title="Cards & Surfaces"
-            description="rounded-2xl for top-level cards, rounded-xl for nested. Use .glassmorphism sparingly for hero panels."
-          />
+          <SectionTitle n="05" title="Surfaces" sub="Three surface treatments — pick one per context." />
           <div className="grid gap-4 md:grid-cols-3">
-            <Card className="card-hover-effect">
-              <CardHeader>
-                <CardTitle>Standard card</CardTitle>
-                <CardDescription>Neutral surface for grouped content.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">Use for lists, forms, dashboards.</p>
-              </CardContent>
-            </Card>
-            <div className="glassmorphism rounded-2xl p-6 fade-in">
-              <h3 className="font-semibold mb-1">Glassmorphism</h3>
-              <p className="text-sm text-muted-foreground">
-                Use for hero/highlight panels layered over gradients.
-              </p>
+            <div className="glassmorphism rounded-xl p-6">
+              <p className="font-semibold text-gray-900">Glass card</p>
+              <p className="text-sm text-gray-500 mt-1">Default surface for widgets on the dashboard.</p>
+              <div className="mt-4"><Copyable text="glassmorphism rounded-xl p-6" /></div>
             </div>
-            <div className="rounded-2xl p-6 bg-gradient-to-br from-primary to-primary/70 text-primary-foreground">
-              <h3 className="font-semibold mb-1">Gradient primary</h3>
-              <p className="text-sm opacity-90">For premium CTAs or feature highlights.</p>
+            <div className="bg-white rounded-xl p-6 border border-gray-200">
+              <p className="font-semibold text-gray-900">Solid white</p>
+              <p className="text-sm text-gray-500 mt-1">Use inside modals, popovers, dropdowns.</p>
+              <div className="mt-4"><Copyable text="bg-white rounded-xl border border-gray-200" /></div>
+            </div>
+            <div className="bg-white/70 backdrop-blur-lg rounded-xl p-6 border border-gray-200/50">
+              <p className="font-semibold text-gray-900">Sidebar surface</p>
+              <p className="text-sm text-gray-500 mt-1">Sidebar, mobile top bar, sticky headers.</p>
+              <div className="mt-4"><Copyable text="bg-white/70 backdrop-blur-lg border-gray-200/50" /></div>
             </div>
           </div>
         </section>
 
-        {/* Avatars */}
+        {/* 06 · Radii & elevation */}
         <section>
-          <SectionHeader
-            icon={Component}
-            title="Avatars & Identity"
-            description="Round avatars with initials fallback. Sizes: sm=h-8, md=h-10, lg=h-12."
-          />
-          <Card>
-            <CardContent className="p-8 flex flex-wrap items-center gap-6">
-              <Avatar className="h-8 w-8">
-                <AvatarFallback>AL</AvatarFallback>
-              </Avatar>
-              <Avatar>
-                <AvatarFallback>JS</AvatarFallback>
-              </Avatar>
-              <Avatar className="h-12 w-12">
-                <AvatarFallback className="bg-primary text-primary-foreground">MR</AvatarFallback>
-              </Avatar>
-              <div className="flex -space-x-2">
-                {["AA", "BB", "CC", "DD"].map((i) => (
-                  <Avatar key={i} className="border-2 border-background">
-                    <AvatarFallback>{i}</AvatarFallback>
-                  </Avatar>
-                ))}
+          <SectionTitle n="06" title="Radius & Motion" sub="Two radii. Two motion classes. Nothing else." />
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="glassmorphism rounded-xl p-6 space-y-3">
+              <p className="font-semibold text-gray-900">Radii</p>
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 bg-blue-600 rounded-lg" />
+                <span className="text-sm text-gray-600">rounded-lg — buttons, nav links, inputs</span>
               </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Tabs demo */}
-        <section>
-          <SectionHeader
-            icon={Layout}
-            title="Navigation Patterns"
-            description="Tabs for switching views within a page, sidebar for top-level nav."
-          />
-          <Card>
-            <CardContent className="p-6">
-              <Tabs defaultValue="overview">
-                <TabsList>
-                  <TabsTrigger value="overview">Overview</TabsTrigger>
-                  <TabsTrigger value="analytics">Analytics</TabsTrigger>
-                  <TabsTrigger value="reports">Reports</TabsTrigger>
-                </TabsList>
-                <TabsContent value="overview" className="pt-4 text-sm text-muted-foreground">
-                  High-level summary tab content.
-                </TabsContent>
-                <TabsContent value="analytics" className="pt-4 text-sm text-muted-foreground">
-                  Charts and metrics.
-                </TabsContent>
-                <TabsContent value="reports" className="pt-4 text-sm text-muted-foreground">
-                  Downloadable reports.
-                </TabsContent>
-              </Tabs>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Spacing & Radius */}
-        <section>
-          <SectionHeader
-            icon={Layout}
-            title="Spacing, Radius & Shadow"
-            description="Consistent scale keeps layouts calm. Use gap-* and space-* utilities, not manual margins."
-          />
-          <div className="grid gap-6 md:grid-cols-3">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Spacing scale</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                {[1, 2, 3, 4, 6, 8, 12].map((s) => (
-                  <div key={s} className="flex items-center gap-3">
-                    <span className="w-10 text-xs font-mono text-muted-foreground">{s * 4}px</span>
-                    <div className="h-3 rounded bg-primary" style={{ width: s * 8 }} />
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Radius</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {[
-                  ["sm", "rounded-sm"],
-                  ["md", "rounded-md"],
-                  ["lg", "rounded-lg"],
-                  ["xl", "rounded-xl"],
-                  ["2xl", "rounded-2xl"],
-                ].map(([n, cls]) => (
-                  <div key={n} className="flex items-center gap-3">
-                    <div className={`h-10 w-10 bg-primary ${cls}`} />
-                    <span className="text-sm text-muted-foreground font-mono">{cls}</span>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Elevation</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {["shadow-sm", "shadow", "shadow-md", "shadow-lg", "shadow-xl"].map((s) => (
-                  <div key={s} className={`h-10 rounded-lg bg-card border border-border ${s} flex items-center px-3 text-xs font-mono text-muted-foreground`}>
-                    {s}
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 bg-blue-600 rounded-xl" />
+                <span className="text-sm text-gray-600">rounded-xl — all cards & widgets</span>
+              </div>
+            </div>
+            <div className="glassmorphism rounded-xl p-6 space-y-3">
+              <p className="font-semibold text-gray-900">Motion utilities</p>
+              <div className="card-hover-effect rounded-lg bg-white p-3 text-sm text-gray-700 border border-gray-200">
+                <code>card-hover-effect</code> — lifts card on hover
+              </div>
+              <div className="fade-in rounded-lg bg-white p-3 text-sm text-gray-700 border border-gray-200">
+                <code>fade-in</code> — 0.5s entrance fade + rise
+              </div>
+              <div className="sticky-note rounded-lg bg-yellow-200 p-3 text-sm text-yellow-900">
+                <code>sticky-note</code> — rotate + scale on hover
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* AI usage rules */}
+        {/* 07 · Buttons */}
         <section>
-          <SectionHeader
-            icon={Sparkles}
-            title="Rules for the AI"
-            description="When generating a new page, follow these rules verbatim."
-          />
-          <Card>
-            <CardContent className="p-6">
-              <ol className="list-decimal pl-5 space-y-2 text-sm text-foreground">
-                <li>
-                  Use only semantic Tailwind classes: <CopyableToken label="bg-background" />{" "}
-                  <CopyableToken label="text-foreground" />{" "}
-                  <CopyableToken label="border-border" />{" "}
-                  <CopyableToken label="bg-primary text-primary-foreground" />.
-                </li>
-                <li>
-                  Build layouts with <code className="px-1 rounded bg-muted">max-w-7xl mx-auto px-6 py-12</code> as the page container.
-                </li>
-                <li>
-                  Top-level cards use <code className="px-1 rounded bg-muted">rounded-2xl</code>, nested cards use{" "}
-                  <code className="px-1 rounded bg-muted">rounded-xl</code>. Buttons and inputs use the shadcn default radius.
-                </li>
-                <li>
-                  Every page has a hero header with a badge, H1 (text-4xl/5xl font-bold), and a supporting paragraph in{" "}
-                  <code className="px-1 rounded bg-muted">text-muted-foreground</code>.
-                </li>
-                <li>
-                  Use lucide-react icons at <code className="px-1 rounded bg-muted">h-4 w-4</code> (buttons) or{" "}
-                  <code className="px-1 rounded bg-muted">h-5 w-5</code> (section headers). Never use emoji as icons.
-                </li>
-                <li>
-                  Animations: use <code className="px-1 rounded bg-muted">.fade-in</code> for entrance and{" "}
-                  <code className="px-1 rounded bg-muted">.card-hover-effect</code> for interactive cards. Keep durations 200–400ms.
-                </li>
-                <li>
-                  Feedback: use <code className="px-1 rounded bg-muted">toast()</code> from sonner for transient messages, Alert for inline, Badge for status.
-                </li>
-                <li>
-                  Never hardcode colors (<code className="px-1 rounded bg-muted">#fff</code>,{" "}
-                  <code className="px-1 rounded bg-muted">bg-white</code>,{" "}
-                  <code className="px-1 rounded bg-muted">text-black</code>) — dark mode will break.
-                </li>
-                <li>Prefer shadcn components (Button, Card, Input, Dialog, DropdownMenu, Tabs) over custom markup.</li>
-                <li>All new pages must have a route <code className="px-1 rounded bg-muted">head()</code> with unique title + description.</li>
-              </ol>
-            </CardContent>
-          </Card>
+          <SectionTitle n="07" title="Buttons" sub="Only these variants exist. Do not invent new button styles." />
+          <div className="glassmorphism rounded-xl p-6 flex flex-wrap gap-3 items-center">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
+              Primary
+            </button>
+            <button className="bg-white hover:bg-gray-50 text-gray-800 font-semibold px-4 py-2 rounded-lg border border-gray-300 transition-colors">
+              Secondary
+            </button>
+            <button className="text-blue-600 hover:bg-blue-50 font-semibold px-4 py-2 rounded-lg transition-colors">
+              Ghost
+            </button>
+            <button className="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
+              Destructive
+            </button>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-2">
+              Continue <ArrowRight className="w-4 h-4" />
+            </button>
+            <button className="p-2 rounded-lg hover:bg-gray-100 text-gray-700" aria-label="Notifications">
+              <Bell className="w-5 h-5" />
+            </button>
+          </div>
         </section>
 
-        <footer className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          Design System · Innovate Dashboard · Keep it consistent.
+        {/* 08 · Nav link */}
+        <section>
+          <SectionTitle n="08" title="Sidebar Nav Item" sub="Exact spec used in the sidebar." />
+          <div className="bg-white/70 backdrop-blur-lg border border-gray-200/50 rounded-xl p-4 max-w-xs space-y-1">
+            <a className="flex items-center gap-3 px-4 py-2 text-white bg-blue-600 rounded-lg font-semibold">
+              <LayoutDashboard className="w-5 h-5" /> Dashboard (active)
+            </a>
+            <a className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg cursor-pointer">
+              <Calendar className="w-5 h-5" /> Calendar (idle)
+            </a>
+          </div>
+        </section>
+
+        {/* 09 · Stats */}
+        <section>
+          <SectionTitle n="09" title="Stat Card" sub="Used on the dashboard for top-line metrics." />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="glassmorphism rounded-xl p-6 flex items-center gap-4 card-hover-effect">
+              <CheckCircle className="w-10 h-10 text-green-500" />
+              <div>
+                <p className="text-gray-500">Tasks Completed</p>
+                <p className="text-2xl font-bold">12 / 18</p>
+              </div>
+            </div>
+            <div className="glassmorphism rounded-xl p-6 flex items-center gap-4 card-hover-effect">
+              <MessageSquare className="w-10 h-10 text-blue-500" />
+              <div>
+                <p className="text-gray-500">Unread Messages</p>
+                <p className="text-2xl font-bold">5</p>
+              </div>
+            </div>
+            <div className="glassmorphism rounded-xl p-6 flex items-center gap-4 card-hover-effect">
+              <Cloudy className="w-10 h-10 text-indigo-500" />
+              <div>
+                <p className="text-gray-500">Weather</p>
+                <p className="text-2xl font-bold">28°C</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 10 · Tinted quick-access */}
+        <section>
+          <SectionTitle
+            n="10"
+            title="Tinted Category Cards"
+            sub="Used in Quick Access. Pair bg-*-100/50 with text-*-800 and text-*-600 icon."
+          />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {TINTED_CARDS.map((c) => (
+              <div
+                key={c.name}
+                className={`${c.bg} rounded-xl p-4 flex flex-col items-center gap-2 card-hover-effect cursor-pointer`}
+              >
+                <Zap className={`w-6 h-6 ${c.icon}`} />
+                <p className={`${c.text} font-semibold text-sm`}>{c.name}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 11 · Sticky notes */}
+        <section>
+          <SectionTitle n="11" title="Sticky Notes" sub="Used only in the Bulletin Board widget." />
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            {STICKY_COLORS.map((s) => (
+              <div key={s.name} className={`${s.cls} sticky-note rounded-lg p-4 text-gray-800 text-sm min-h-24`}>
+                {s.name} note
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 max-w-sm">
+            <textarea
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              className="w-full bg-yellow-200 sticky-note rounded-lg p-4 text-gray-800 text-sm min-h-24 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <p className="text-xs text-gray-500 mt-1">Try editing — same pattern used in BulletinBoard.tsx.</p>
+          </div>
+        </section>
+
+        {/* 12 · Typography */}
+        <section>
+          <SectionTitle n="12" title="Typography" sub="System sans (Inter-like default). Only these sizes." />
+          <div className="glassmorphism rounded-xl p-6 space-y-4">
+            <p className="text-3xl font-bold text-gray-900">Page greeting — text-3xl font-bold</p>
+            <p className="text-2xl font-bold text-gray-900">Card metric — text-2xl font-bold</p>
+            <p className="text-xl font-bold text-gray-900">Widget title — text-xl font-bold</p>
+            <p className="text-base text-gray-800">Body copy — text-base text-gray-800</p>
+            <p className="text-sm text-gray-500">Caption / meta — text-sm text-gray-500</p>
+          </div>
+        </section>
+
+        {/* 13 · Form */}
+        <section>
+          <SectionTitle n="13" title="Form Fields" sub="Used on login & preferences." />
+          <div className="glassmorphism rounded-xl p-6 max-w-md space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">Username</label>
+              <input
+                type="text"
+                placeholder="alex.doe"
+                className="w-full px-3 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">Password</label>
+              <input
+                type="password"
+                placeholder="••••••••"
+                className="w-full px-3 py-2 rounded-lg border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
+              Log in
+            </button>
+          </div>
+        </section>
+
+        {/* 14 · Rules for AI */}
+        <section>
+          <SectionTitle n="14" title="Rules for the AI" sub="Follow verbatim when generating any new page." />
+          <div className="glassmorphism rounded-xl p-6">
+            <ol className="list-decimal pl-5 space-y-2 text-sm text-gray-800">
+              <li>Page shell: fixed gradient <code className="bg-gray-100 px-1 rounded">bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100</code> + <code className="bg-gray-100 px-1 rounded">Sidebar</code> + main content in <code className="bg-gray-100 px-1 rounded">p-4 sm:p-6 lg:p-8</code>.</li>
+              <li>Every widget/card uses <code className="bg-gray-100 px-1 rounded">glassmorphism rounded-xl p-6</code>. Add <code className="bg-gray-100 px-1 rounded">card-hover-effect</code> when interactive.</li>
+              <li>Brand action = <code className="bg-gray-100 px-1 rounded">bg-blue-600 hover:bg-blue-700 text-white</code>. No other primary color.</li>
+              <li>Text hierarchy: gray-900 headings → gray-800 body → gray-600 secondary → gray-500 captions. Never other grays.</li>
+              <li>Icons from <code className="bg-gray-100 px-1 rounded">lucide-react</code>: w-5 h-5 inline, w-10 h-10 for stat cards. Never emoji.</li>
+              <li>Radii: <code className="bg-gray-100 px-1 rounded">rounded-lg</code> for controls, <code className="bg-gray-100 px-1 rounded">rounded-xl</code> for cards. No rounded-2xl / rounded-full except avatars.</li>
+              <li>Status colors (green/blue/indigo/yellow/red-500) only inside icons or badges — never as backgrounds.</li>
+              <li>Tinted category tiles pair <code className="bg-gray-100 px-1 rounded">bg-{`{c}`}-100/50</code> + <code className="bg-gray-100 px-1 rounded">text-{`{c}`}-800</code> + <code className="bg-gray-100 px-1 rounded">text-{`{c}`}-600</code> icon.</li>
+              <li>Motion: <code className="bg-gray-100 px-1 rounded">fade-in</code> on section entry, <code className="bg-gray-100 px-1 rounded">card-hover-effect</code> on hover. No custom keyframes.</li>
+              <li>Feedback: use <code className="bg-gray-100 px-1 rounded">toast()</code> from sonner. Never <code className="bg-gray-100 px-1 rounded">alert()</code>.</li>
+              <li>Every route sets a unique <code className="bg-gray-100 px-1 rounded">head()</code> title + description.</li>
+              <li>Never hardcode hex, <code className="bg-gray-100 px-1 rounded">#fff</code>, or invent new tailwind color scales.</li>
+            </ol>
+          </div>
+        </section>
+
+        <footer className="text-center text-sm text-gray-500 pt-6">
+          Innovate Inc. · Design System · Keep it consistent.
         </footer>
       </main>
     </div>
-  );
+  )
 }
