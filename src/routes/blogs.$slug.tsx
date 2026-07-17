@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react'
 import { createFileRoute, Link, notFound } from '@tanstack/react-router'
 import { ArrowLeft, Search, Calendar, Clock, Share2, Copy, Check, Twitter, Linkedin } from 'lucide-react'
-import { BLOGS } from '@/data/blogs'
+import { BLOGS, type Blog } from '@/data/blogs'
 
 export const Route = createFileRoute('/blogs/$slug')({
-  loader: ({ params }) => {
+  loader: ({ params }): { blog: Blog } => {
     const blog = BLOGS.find((b) => b.slug === params.slug)
     if (!blog) throw notFound()
     return { blog }

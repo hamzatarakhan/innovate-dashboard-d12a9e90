@@ -9,12 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PreferencesRouteImport } from './routes/preferences'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as QuickSectionRouteImport } from './routes/quick.$section'
 import { Route as BlogsSlugRouteImport } from './routes/blogs.$slug'
 
+const PreferencesRoute = PreferencesRouteImport.update({
+  id: '/preferences',
+  path: '/preferences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuickSectionRoute = QuickSectionRouteImport.update({
+  id: '/quick/$section',
+  path: '/quick/$section',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogsSlugRoute = BlogsSlugRouteImport.update({
@@ -25,37 +43,81 @@ const BlogsSlugRoute = BlogsSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/preferences': typeof PreferencesRoute
   '/blogs/$slug': typeof BlogsSlugRoute
+  '/quick/$section': typeof QuickSectionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/preferences': typeof PreferencesRoute
   '/blogs/$slug': typeof BlogsSlugRoute
+  '/quick/$section': typeof QuickSectionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/preferences': typeof PreferencesRoute
   '/blogs/$slug': typeof BlogsSlugRoute
+  '/quick/$section': typeof QuickSectionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blogs/$slug'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/preferences'
+    | '/blogs/$slug'
+    | '/quick/$section'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blogs/$slug'
-  id: '__root__' | '/' | '/blogs/$slug'
+  to: '/' | '/login' | '/preferences' | '/blogs/$slug' | '/quick/$section'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/preferences'
+    | '/blogs/$slug'
+    | '/quick/$section'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
+  PreferencesRoute: typeof PreferencesRoute
   BlogsSlugRoute: typeof BlogsSlugRoute
+  QuickSectionRoute: typeof QuickSectionRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/preferences': {
+      id: '/preferences'
+      path: '/preferences'
+      fullPath: '/preferences'
+      preLoaderRoute: typeof PreferencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quick/$section': {
+      id: '/quick/$section'
+      path: '/quick/$section'
+      fullPath: '/quick/$section'
+      preLoaderRoute: typeof QuickSectionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blogs/$slug': {
@@ -70,7 +132,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
+  PreferencesRoute: PreferencesRoute,
   BlogsSlugRoute: BlogsSlugRoute,
+  QuickSectionRoute: QuickSectionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
