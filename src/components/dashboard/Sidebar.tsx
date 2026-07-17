@@ -99,7 +99,7 @@ export function Sidebar() {
 
       {/* Sidebar / drawer */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw] bg-white/95 lg:bg-white/70 backdrop-blur-lg border-r border-gray-200/50 p-6 flex-shrink-0 overflow-y-auto transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 lg:z-auto lg:w-64 lg:max-w-none ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw] bg-white/95 lg:bg-white/70 backdrop-blur-lg border-r border-gray-200/50 p-6 flex flex-col flex-shrink-0 overflow-y-auto transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 lg:z-auto lg:w-64 lg:max-w-none ${
             open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}
       >
@@ -118,7 +118,13 @@ export function Sidebar() {
             <X className="w-6 h-6" />
           </button>
         </div>
-        {navLinks}
+        <div className="flex-1">{navLinks}</div>
+        <div className="mt-6 pt-6 border-t border-gray-200/60 flex items-center gap-3 text-gray-500">
+          <div className="bg-gray-200/70 p-1.5 rounded-md">
+            <Zap className="w-5 h-5" />
+          </div>
+          <span className="font-semibold text-sm">Your logo</span>
+        </div>
       </aside>
     </>
   )
