@@ -1,32 +1,7 @@
 import { useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-
-const BLOGS = [
-  {
-    title: 'Designing for Focus: Our New Branding Guide',
-    category: 'Design',
-    author: 'Priya Sharma',
-    date: 'Jul 12, 2026',
-    excerpt: 'How we rebuilt our visual identity around clarity, and what it means for every team.',
-    cover: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600&q=80&auto=format&fit=crop',
-  },
-  {
-    title: 'Cutting Query Times by 30%',
-    category: 'Engineering',
-    author: 'Rohan Mehta',
-    date: 'Jul 8, 2026',
-    excerpt: 'A deep dive into the database optimizations powering our faster dashboards.',
-    cover: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&q=80&auto=format&fit=crop',
-  },
-  {
-    title: '3 Years of Product Lessons',
-    category: 'Product',
-    author: 'Anjali Rao',
-    date: 'Jul 1, 2026',
-    excerpt: 'Reflections on shipping, listening to users, and growing with Innovate Inc.',
-    cover: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80&auto=format&fit=crop',
-  },
-]
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { BLOGS } from '@/data/blogs'
 
 export function BlogsCarousel() {
   const [current, setCurrent] = useState(0)
@@ -68,6 +43,13 @@ export function BlogsCarousel() {
               <p className="text-xs text-gray-500 mt-2">
                 {blog.author} · {blog.date}
               </p>
+              <Link
+                to="/blogs/$slug"
+                params={{ slug: blog.slug }}
+                className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-blue-600 hover:text-blue-700"
+              >
+                Read more <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           ))}
         </div>
