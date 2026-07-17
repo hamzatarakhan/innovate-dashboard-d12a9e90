@@ -73,13 +73,7 @@ export function Sidebar() {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="lg:hidden flex items-center justify-between bg-white/70 backdrop-blur-lg border-b border-gray-200/50 px-4 py-3 sticky top-0 z-30">
-        <div className="flex items-center gap-2">
-          <div className="bg-blue-600 p-1.5 rounded-lg">
-            <Zap className="w-5 h-5 text-white" />
-          </div>
-          <h1 className="text-lg font-bold text-gray-800">Innovate Inc.</h1>
-        </div>
+      <div className="lg:hidden flex items-center gap-3 bg-white/70 backdrop-blur-lg border-b border-gray-200/50 px-4 py-3 sticky top-0 z-30">
         <button
           onClick={() => setOpen(true)}
           aria-label="Open menu"
@@ -87,6 +81,12 @@ export function Sidebar() {
         >
           <Menu className="w-6 h-6" />
         </button>
+        <div className="flex items-center gap-2">
+          <div className="bg-blue-600 p-1.5 rounded-lg">
+            <Zap className="w-5 h-5 text-white" />
+          </div>
+          <h1 className="text-lg font-bold text-gray-800">Innovate Inc.</h1>
+        </div>
       </div>
 
       {/* Backdrop */}
