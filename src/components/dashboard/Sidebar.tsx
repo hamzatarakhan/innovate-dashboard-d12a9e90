@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link, useRouterState } from '@tanstack/react-router'
 import {
   LayoutDashboard,
   MessageCircle,
@@ -16,8 +17,23 @@ import {
   X,
 } from 'lucide-react'
 
+const navItems = [
+  { title: 'Dashboard', url: '/', icon: LayoutDashboard },
+  { title: 'Discuss', url: '/discuss', icon: MessageCircle },
+  { title: 'Calendar', url: '/calendar', icon: Calendar },
+  { title: 'To-do', url: '/todo', icon: CheckSquare },
+  { title: 'Library', url: '/library', icon: BookOpen },
+  { title: 'Tasks', url: '/tasks', icon: ListTodo },
+  { title: 'Internal Portal', url: '/internal-portal', icon: Globe },
+  { title: 'Surveys', url: '/surveys', icon: FileQuestion },
+  { title: 'Employees', url: '/employees', icon: Users },
+  { title: 'Apps', url: '/apps', icon: LayoutGrid },
+  { title: 'Settings', url: '/settings', icon: Settings },
+]
+
 export function Sidebar() {
   const [open, setOpen] = useState(false)
+  const currentPath = useRouterState({ select: (router) => router.location.pathname })
 
   useEffect(() => {
     const onResize = () => {
@@ -34,39 +50,23 @@ export function Sidebar() {
 
   const navLinks = (
     <nav className="space-y-1">
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-white bg-blue-600 rounded-lg font-semibold">
-        <LayoutDashboard className="w-5 h-5" /> Dashboard
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <MessageCircle className="w-5 h-5" /> Discuss
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <Calendar className="w-5 h-5" /> Calendar
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <CheckSquare className="w-5 h-5" /> To-do
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <BookOpen className="w-5 h-5" /> Library
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <ListTodo className="w-5 h-5" /> Tasks
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <Globe className="w-5 h-5" /> Internal Portal
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <FileQuestion className="w-5 h-5" /> Surveys
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <Users className="w-5 h-5" /> Employees
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <LayoutGrid className="w-5 h-5" /> Apps
-      </a>
-      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
-        <Settings className="w-5 h-5" /> Settings
-      </a>
+      {navItems.map((item) => {
+        const isActive = currentPath === item.url
+        return (
+          <Link
+            key={item.title}
+            to={item.url}
+            onClick={() => setOpen(false)}
+            className={`flex items-center gap-3 px-4 py-2 rounded-lg font-semibold transition-colors ${
+              isActive
+                ? 'text-white bg-blue-600'
+                : 'text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+            }`}
+          >
+            <item.icon className="w-5 h-5" /> {item.title}
+          </Link>
+        )
+      })}
     </nav>
   )
 

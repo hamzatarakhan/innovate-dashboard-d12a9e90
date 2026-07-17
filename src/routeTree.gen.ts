@@ -9,13 +9,43 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TodoRouteImport } from './routes/todo'
+import { Route as TasksRouteImport } from './routes/tasks'
+import { Route as SurveysRouteImport } from './routes/surveys'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as PreferencesRouteImport } from './routes/preferences'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LibraryRouteImport } from './routes/library'
+import { Route as InternalPortalRouteImport } from './routes/internal-portal'
+import { Route as EmployeesRouteImport } from './routes/employees'
+import { Route as DiscussRouteImport } from './routes/discuss'
 import { Route as DesignSystemRouteImport } from './routes/design-system'
+import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as AppsRouteImport } from './routes/apps'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuickSectionRouteImport } from './routes/quick.$section'
 import { Route as BlogsSlugRouteImport } from './routes/blogs.$slug'
 
+const TodoRoute = TodoRouteImport.update({
+  id: '/todo',
+  path: '/todo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TasksRoute = TasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SurveysRoute = SurveysRouteImport.update({
+  id: '/surveys',
+  path: '/surveys',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PreferencesRoute = PreferencesRouteImport.update({
   id: '/preferences',
   path: '/preferences',
@@ -26,9 +56,39 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternalPortalRoute = InternalPortalRouteImport.update({
+  id: '/internal-portal',
+  path: '/internal-portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmployeesRoute = EmployeesRouteImport.update({
+  id: '/employees',
+  path: '/employees',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscussRoute = DiscussRouteImport.update({
+  id: '/discuss',
+  path: '/discuss',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DesignSystemRoute = DesignSystemRouteImport.update({
   id: '/design-system',
   path: '/design-system',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppsRoute = AppsRouteImport.update({
+  id: '/apps',
+  path: '/apps',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,26 +109,56 @@ const BlogsSlugRoute = BlogsSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/apps': typeof AppsRoute
+  '/calendar': typeof CalendarRoute
   '/design-system': typeof DesignSystemRoute
+  '/discuss': typeof DiscussRoute
+  '/employees': typeof EmployeesRoute
+  '/internal-portal': typeof InternalPortalRoute
+  '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/preferences': typeof PreferencesRoute
+  '/settings': typeof SettingsRoute
+  '/surveys': typeof SurveysRoute
+  '/tasks': typeof TasksRoute
+  '/todo': typeof TodoRoute
   '/blogs/$slug': typeof BlogsSlugRoute
   '/quick/$section': typeof QuickSectionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/apps': typeof AppsRoute
+  '/calendar': typeof CalendarRoute
   '/design-system': typeof DesignSystemRoute
+  '/discuss': typeof DiscussRoute
+  '/employees': typeof EmployeesRoute
+  '/internal-portal': typeof InternalPortalRoute
+  '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/preferences': typeof PreferencesRoute
+  '/settings': typeof SettingsRoute
+  '/surveys': typeof SurveysRoute
+  '/tasks': typeof TasksRoute
+  '/todo': typeof TodoRoute
   '/blogs/$slug': typeof BlogsSlugRoute
   '/quick/$section': typeof QuickSectionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/apps': typeof AppsRoute
+  '/calendar': typeof CalendarRoute
   '/design-system': typeof DesignSystemRoute
+  '/discuss': typeof DiscussRoute
+  '/employees': typeof EmployeesRoute
+  '/internal-portal': typeof InternalPortalRoute
+  '/library': typeof LibraryRoute
   '/login': typeof LoginRoute
   '/preferences': typeof PreferencesRoute
+  '/settings': typeof SettingsRoute
+  '/surveys': typeof SurveysRoute
+  '/tasks': typeof TasksRoute
+  '/todo': typeof TodoRoute
   '/blogs/$slug': typeof BlogsSlugRoute
   '/quick/$section': typeof QuickSectionRoute
 }
@@ -76,40 +166,108 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/apps'
+    | '/calendar'
     | '/design-system'
+    | '/discuss'
+    | '/employees'
+    | '/internal-portal'
+    | '/library'
     | '/login'
     | '/preferences'
+    | '/settings'
+    | '/surveys'
+    | '/tasks'
+    | '/todo'
     | '/blogs/$slug'
     | '/quick/$section'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/apps'
+    | '/calendar'
     | '/design-system'
+    | '/discuss'
+    | '/employees'
+    | '/internal-portal'
+    | '/library'
     | '/login'
     | '/preferences'
+    | '/settings'
+    | '/surveys'
+    | '/tasks'
+    | '/todo'
     | '/blogs/$slug'
     | '/quick/$section'
   id:
     | '__root__'
     | '/'
+    | '/apps'
+    | '/calendar'
     | '/design-system'
+    | '/discuss'
+    | '/employees'
+    | '/internal-portal'
+    | '/library'
     | '/login'
     | '/preferences'
+    | '/settings'
+    | '/surveys'
+    | '/tasks'
+    | '/todo'
     | '/blogs/$slug'
     | '/quick/$section'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppsRoute: typeof AppsRoute
+  CalendarRoute: typeof CalendarRoute
   DesignSystemRoute: typeof DesignSystemRoute
+  DiscussRoute: typeof DiscussRoute
+  EmployeesRoute: typeof EmployeesRoute
+  InternalPortalRoute: typeof InternalPortalRoute
+  LibraryRoute: typeof LibraryRoute
   LoginRoute: typeof LoginRoute
   PreferencesRoute: typeof PreferencesRoute
+  SettingsRoute: typeof SettingsRoute
+  SurveysRoute: typeof SurveysRoute
+  TasksRoute: typeof TasksRoute
+  TodoRoute: typeof TodoRoute
   BlogsSlugRoute: typeof BlogsSlugRoute
   QuickSectionRoute: typeof QuickSectionRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/todo': {
+      id: '/todo'
+      path: '/todo'
+      fullPath: '/todo'
+      preLoaderRoute: typeof TodoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tasks': {
+      id: '/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/surveys': {
+      id: '/surveys'
+      path: '/surveys'
+      fullPath: '/surveys'
+      preLoaderRoute: typeof SurveysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/preferences': {
       id: '/preferences'
       path: '/preferences'
@@ -124,11 +282,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internal-portal': {
+      id: '/internal-portal'
+      path: '/internal-portal'
+      fullPath: '/internal-portal'
+      preLoaderRoute: typeof InternalPortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/employees': {
+      id: '/employees'
+      path: '/employees'
+      fullPath: '/employees'
+      preLoaderRoute: typeof EmployeesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discuss': {
+      id: '/discuss'
+      path: '/discuss'
+      fullPath: '/discuss'
+      preLoaderRoute: typeof DiscussRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/design-system': {
       id: '/design-system'
       path: '/design-system'
       fullPath: '/design-system'
       preLoaderRoute: typeof DesignSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apps': {
+      id: '/apps'
+      path: '/apps'
+      fullPath: '/apps'
+      preLoaderRoute: typeof AppsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -157,9 +357,19 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppsRoute: AppsRoute,
+  CalendarRoute: CalendarRoute,
   DesignSystemRoute: DesignSystemRoute,
+  DiscussRoute: DiscussRoute,
+  EmployeesRoute: EmployeesRoute,
+  InternalPortalRoute: InternalPortalRoute,
+  LibraryRoute: LibraryRoute,
   LoginRoute: LoginRoute,
   PreferencesRoute: PreferencesRoute,
+  SettingsRoute: SettingsRoute,
+  SurveysRoute: SurveysRoute,
+  TasksRoute: TasksRoute,
+  TodoRoute: TodoRoute,
   BlogsSlugRoute: BlogsSlugRoute,
   QuickSectionRoute: QuickSectionRoute,
 }
