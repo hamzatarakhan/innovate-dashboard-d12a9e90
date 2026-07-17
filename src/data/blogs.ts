@@ -3,7 +3,13 @@ export type Blog = {
   title: string
   category: string
   author: string
+  authorRole: string
+  authorAvatar: string
   date: string
+  createdAt: string
+  updatedAt: string
+  readTime: string
+  tags: string[]
   excerpt: string
   cover: string
   content: string[]
@@ -15,7 +21,13 @@ export const BLOGS: Blog[] = [
     title: 'Designing for Focus: Our New Branding Guide',
     category: 'Design',
     author: 'Priya Sharma',
+    authorRole: 'Head of Design',
+    authorAvatar: 'https://placehold.co/64x64/A78BFA/FFFFFF?text=PS',
     date: 'Jul 12, 2026',
+    createdAt: '2026-07-12',
+    updatedAt: '2026-07-14',
+    readTime: '6 min read',
+    tags: ['Branding', 'Design System', 'Typography'],
     excerpt: 'How we rebuilt our visual identity around clarity, and what it means for every team.',
     cover: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600&q=80&auto=format&fit=crop',
     content: [
@@ -29,7 +41,13 @@ export const BLOGS: Blog[] = [
     title: 'Cutting Query Times by 30%',
     category: 'Engineering',
     author: 'Rohan Mehta',
+    authorRole: 'Staff Engineer',
+    authorAvatar: 'https://placehold.co/64x64/60A5FA/FFFFFF?text=RM',
     date: 'Jul 8, 2026',
+    createdAt: '2026-07-08',
+    updatedAt: '2026-07-08',
+    readTime: '8 min read',
+    tags: ['Performance', 'Databases', 'PostgreSQL'],
     excerpt: 'A deep dive into the database optimizations powering our faster dashboards.',
     cover: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&q=80&auto=format&fit=crop',
     content: [
@@ -43,7 +61,13 @@ export const BLOGS: Blog[] = [
     title: '3 Years of Product Lessons',
     category: 'Product',
     author: 'Anjali Rao',
+    authorRole: 'Director of Product',
+    authorAvatar: 'https://placehold.co/64x64/34D399/FFFFFF?text=AR',
     date: 'Jul 1, 2026',
+    createdAt: '2026-07-01',
+    updatedAt: '2026-07-03',
+    readTime: '5 min read',
+    tags: ['Product', 'Reflection', 'Leadership'],
     excerpt: 'Reflections on shipping, listening to users, and growing with Innovate Inc.',
     cover: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80&auto=format&fit=crop',
     content: [
