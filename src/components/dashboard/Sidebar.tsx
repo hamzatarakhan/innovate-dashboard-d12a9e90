@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LayoutDashboard, Users, Folder, Calendar, Settings, Zap, Menu, X } from 'lucide-react'
+import { LayoutDashboard, Users, Folder, Calendar, Settings, Zap, Menu, X, FlaskConical } from 'lucide-react'
 
 export function Sidebar() {
   const [open, setOpen] = useState(false)
