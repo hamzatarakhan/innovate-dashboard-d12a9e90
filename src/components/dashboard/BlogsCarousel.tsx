@@ -43,6 +43,13 @@ export function BlogsCarousel() {
               <p className="text-xs text-gray-500 mt-2">
                 {blog.author} · {blog.date}
               </p>
+              <Link
+                to="/blogs/$slug"
+                params={{ slug: blog.slug }}
+                className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-blue-600 hover:text-blue-700"
+              >
+                Read more <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           ))}
         </div>
