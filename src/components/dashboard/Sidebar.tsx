@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LayoutDashboard, Users, Folder, Calendar, Settings, Zap, Menu, X } from 'lucide-react'
+import { LayoutDashboard, Users, Folder, Calendar, Settings, Zap, Menu, X, FlaskConical } from 'lucide-react'
 
 export function Sidebar() {
   const [open, setOpen] = useState(false)
@@ -33,6 +33,9 @@ export function Sidebar() {
       </a>
       <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
         <Settings className="w-5 h-5" /> Settings
+      </a>
+      <a href="#" onClick={() => setOpen(false)} className="flex items-center gap-3 px-4 py-2 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+        <FlaskConical className="w-5 h-5" /> Test Item
       </a>
     </nav>
   )
