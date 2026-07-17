@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { createFileRoute, useNavigate, Link } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { Zap, Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
