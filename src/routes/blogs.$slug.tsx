@@ -36,7 +36,7 @@ function BlogDetail() {
         <h1 className="text-3xl md:text-4xl font-bold mt-2 mb-2">{blog.title}</h1>
         <p className="text-sm text-gray-500 mb-6">{blog.author} · {blog.date}</p>
         <div className="prose max-w-none space-y-4 text-gray-700 leading-relaxed">
-          {blog.content.map((p, i) => (
+          {blog.content.map((p: string, i: number) => (
             <p key={i}>{p}</p>
           ))}
         </div>
