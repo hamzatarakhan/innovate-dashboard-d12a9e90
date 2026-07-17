@@ -135,7 +135,7 @@ function BlogDetail() {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mt-6">
-          {blog.tags.map((t) => (
+          {blog.tags.map((t: string) => (
             <span key={t} className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium">
               #{t}
             </span>
@@ -144,7 +144,7 @@ function BlogDetail() {
 
         {/* Body */}
         <article className="prose max-w-none mt-8 space-y-5 text-gray-700 leading-relaxed text-[17px]">
-          {blog.content.map((p, i) => (
+          {blog.content.map((p: string, i: number) => (
             <p key={i}>{p}</p>
           ))}
         </article>
