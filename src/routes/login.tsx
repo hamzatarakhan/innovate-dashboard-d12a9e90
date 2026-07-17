@@ -63,14 +63,6 @@ function LoginPage() {
           <p className="mt-4 text-blue-100 text-lg max-w-md">
             Your announcements, events, blogs, and quick links — all in one focused place.
           </p>
-          <div className="mt-10 flex items-center gap-2 text-sm text-blue-100">
-            <div className="flex -space-x-2">
-              <img src="https://placehold.co/32x32/A78BFA/FFFFFF?text=P" className="w-8 h-8 rounded-full border-2 border-indigo-600" alt="" />
-              <img src="https://placehold.co/32x32/60A5FA/FFFFFF?text=R" className="w-8 h-8 rounded-full border-2 border-indigo-600" alt="" />
-              <img src="https://placehold.co/32x32/34D399/FFFFFF?text=A" className="w-8 h-8 rounded-full border-2 border-indigo-600" alt="" />
-            </div>
-            <span>Trusted by 2,400+ teammates worldwide.</span>
-          </div>
         </div>
         <div className="relative text-xs text-blue-200">© {new Date().getFullYear()} Innovate Inc.</div>
       </div>
