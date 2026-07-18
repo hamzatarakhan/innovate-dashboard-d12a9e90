@@ -9,7 +9,8 @@ import { INITIAL_NOTIFICATIONS, type Notification } from '@/data/notifications'
 
 const STORAGE_KEY = 'innovate.notifications'
 
-export function NotificationsMenu() {
+export function NotificationsMenu({ variant = 'light' }: { variant?: 'light' | 'navbar' }) {
+  const navbar = variant === 'navbar'
   const [items, setItems] = useState<Notification[]>(INITIAL_NOTIFICATIONS)
 
   useEffect(() => {
@@ -35,13 +36,20 @@ export function NotificationsMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className="relative p-2 rounded-md bg-white border hover:bg-gray-50"
-          style={{ borderColor: 'var(--odoo-line)' }}
+          className={
+            navbar
+              ? 'relative p-2 rounded-md text-white/80 hover:bg-white/10'
+              : 'relative p-2 rounded-md bg-white border hover:bg-gray-50'
+          }
+          style={navbar ? undefined : { borderColor: 'var(--odoo-line)' }}
           aria-label={`Notifications${unread ? ` (${unread} unread)` : ''}`}
         >
-          <Bell className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} />
+          <Bell className="w-5 h-5" style={navbar ? undefined : { color: 'var(--odoo-brand)' }} />
           {unread > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold ring-2 ring-white flex items-center justify-center">
+            <span
+              className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center"
+              style={{ boxShadow: navbar ? '0 0 0 2px var(--odoo-brand)' : '0 0 0 2px #fff' }}
+            >
               {unread}
             </span>
           )}

@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react'
-import { MessagesMenu } from './MessagesMenu'
-import { NotificationsMenu } from './NotificationsMenu'
-import { UserMenu } from './UserMenu'
 
 const USER = 'Alex'
 
@@ -33,18 +30,11 @@ export function Header() {
   }, [])
 
   return (
-    <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-      <div>
-        <h2 className="odoo-heading text-2xl">{greeting}</h2>
-        <p className="mt-1 text-sm" style={{ color: 'var(--odoo-muted)' }}>
-          {dateTime || 'Loading date and time...'}
-        </p>
-      </div>
-      <div className="flex items-center gap-3 mt-4 sm:mt-0">
-        <MessagesMenu />
-        <NotificationsMenu />
-        <UserMenu />
-      </div>
+    <header className="mb-6">
+      <h2 className="odoo-heading text-2xl">{greeting}</h2>
+      <p className="mt-1 text-sm" style={{ color: 'var(--odoo-muted)' }}>
+        {dateTime || 'Loading date and time...'}
+      </p>
     </header>
   )
 }

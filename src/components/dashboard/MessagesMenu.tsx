@@ -6,20 +6,31 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { MESSAGES } from '@/data/messages'
 
-export function MessagesMenu() {
+export function MessagesMenu({ variant = 'light' }: { variant?: 'light' | 'navbar' }) {
   const unread = MESSAGES.filter((m) => m.unread).length
+  const navbar = variant === 'navbar'
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className="relative p-2 rounded-md bg-white border hover:bg-gray-50"
-          style={{ borderColor: 'var(--odoo-line)' }}
+          className={
+            navbar
+              ? 'relative p-2 rounded-md text-white/80 hover:bg-white/10'
+              : 'relative p-2 rounded-md bg-white border hover:bg-gray-50'
+          }
+          style={navbar ? undefined : { borderColor: 'var(--odoo-line)' }}
           aria-label={`Messages${unread ? ` (${unread} unread)` : ''}`}
         >
-          <MessageSquare className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} />
+          <MessageSquare className="w-5 h-5" style={navbar ? undefined : { color: 'var(--odoo-brand)' }} />
           {unread > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full text-white text-[10px] font-bold ring-2 ring-white flex items-center justify-center" style={{ backgroundColor: 'var(--odoo-brand)' }}>
+            <span
+              className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full text-white text-[10px] font-bold flex items-center justify-center"
+              style={{
+                backgroundColor: navbar ? '#e11d48' : 'var(--odoo-brand)',
+                boxShadow: navbar ? '0 0 0 2px var(--odoo-brand)' : '0 0 0 2px #fff',
+              }}
+            >
               {unread}
             </span>
           )}

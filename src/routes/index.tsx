@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Sidebar } from '@/components/dashboard/Sidebar'
+import { AppShell } from '@/components/dashboard/AppShell'
 import { Header } from '@/components/dashboard/Header'
 import { AnnouncementBanner } from '@/components/dashboard/AnnouncementBanner'
 import { StatsRow } from '@/components/dashboard/StatsRow'
@@ -25,23 +25,19 @@ export const Route = createFileRoute('/')({
 
 function DashboardPage() {
   return (
-    <div className="relative min-h-screen" style={{ color: 'var(--odoo-ink)' }}>
-      <div className="fixed inset-0 -z-10" style={{ backgroundColor: 'var(--odoo-page)' }} />
-      <div className="flex flex-col lg:flex-row min-h-screen">
-        <Sidebar />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
-          <Header />
-          <AnnouncementBanner />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            <StatsRow />
-            <UpcomingEvents />
-            <BlogsCarousel />
-            <QuickAccess />
-            <Surveys />
-            <BulletinBoard />
-          </div>
-        </main>
+    <AppShell>
+      <div className="p-4 sm:p-6 lg:p-8">
+        <Header />
+        <AnnouncementBanner />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <StatsRow />
+          <UpcomingEvents />
+          <BlogsCarousel />
+          <QuickAccess />
+          <Surveys />
+          <BulletinBoard />
+        </div>
       </div>
-    </div>
+    </AppShell>
   )
 }

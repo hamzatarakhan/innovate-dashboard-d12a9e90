@@ -53,7 +53,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Sidebar } from '@/components/dashboard/Sidebar'
+import { AppShell } from '@/components/dashboard/AppShell'
 
 
 export const Route = createFileRoute('/design-system')({
@@ -178,12 +178,8 @@ function DesignSystemPage() {
   const [tab, setTab] = useState('preview')
 
   return (
-    <div className="relative min-h-screen" style={{ color: 'var(--odoo-ink)' }}>
-      <div className="fixed inset-0 -z-10" style={{ backgroundColor: 'var(--odoo-page)' }} />
-
-      <div className="flex flex-col lg:flex-row min-h-screen">
-        <Sidebar />
-        <main className="flex-1 max-w-6xl mx-auto p-4 sm:p-6 lg:p-10 space-y-14 overflow-y-auto w-full">
+    <AppShell>
+      <div className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-10 space-y-14 w-full">
 
         {/* Hero */}
         <header className="odoo-card p-8 fade-in">
@@ -892,8 +888,7 @@ function DesignSystemPage() {
         <footer className="text-center text-sm pt-6" style={{ color: 'var(--odoo-muted)' }}>
           Innovate Inc. · Odoo 19 Design System · Keep it consistent.
         </footer>
-      </main>
       </div>
-    </div>
+    </AppShell>
   )
 }
