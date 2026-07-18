@@ -150,6 +150,96 @@
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+/* ===========================================================
+ * Odoo 19 look & feel  (MOSD "Innovate Inc." internal theme)
+ * Brand tokens read from the live Odoo 19 instance:
+ *   primary  #243742 (navy)     secondary #F0CDA8 (sand)
+ *   ink      #212529            muted     #6C757D
+ *   hairline #DEE2E6            page      #F8F9FA
+ *   font     Inter / Inter Tight
+ * These reusable classes let the dashboard match Odoo's flat,
+ * enterprise surface style without changing component structure.
+ * =========================================================== */
+:root {
+  --odoo-brand: #243742;
+  --odoo-brand-hover: #1b2a33;
+  --odoo-accent: #f0cda8;
+  --odoo-accent-hover: #ecbf90;
+  --odoo-accent-ink: #5b4636;
+  --odoo-page: #f8f9fa;
+  --odoo-surface: #ffffff;
+  --odoo-ink: #212529;
+  --odoo-muted: #6c757d;
+  --odoo-line: #dee2e6;
+}
+
+body {
+  font-family: "Inter", "Inter Tight", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Flat white surface with a hairline border — the Odoo card/kanban look */
+.odoo-card {
+  background: var(--odoo-surface);
+  border: 1px solid var(--odoo-line);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(17, 24, 39, 0.04);
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.odoo-card:hover {
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.07);
+  border-color: #ced4da;
+}
+
+/* Inset tile used inside cards (rows, quick-links, survey items) */
+.odoo-tile {
+  background: var(--odoo-page);
+  border: 1px solid var(--odoo-line);
+  border-radius: 6px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.odoo-tile:hover {
+  background: #eef1f4;
+  border-color: #ced4da;
+}
+
+.odoo-heading {
+  color: var(--odoo-ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Buttons — sizing stays in the JSX, only the skin lives here */
+.odoo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.odoo-btn-primary { background: var(--odoo-brand); color: #fff; }
+.odoo-btn-primary:hover { background: var(--odoo-brand-hover); }
+.odoo-btn-secondary { background: var(--odoo-accent); color: var(--odoo-accent-ink); }
+.odoo-btn-secondary:hover { background: var(--odoo-accent-hover); }
+.odoo-btn-ghost {
+  background: var(--odoo-surface);
+  color: var(--odoo-ink);
+  border: 1px solid var(--odoo-line);
+}
+.odoo-btn-ghost:hover { background: var(--odoo-page); border-color: #ced4da; }
+
+/* Chip / badge */
+.odoo-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+}
 .card-hover-effect {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

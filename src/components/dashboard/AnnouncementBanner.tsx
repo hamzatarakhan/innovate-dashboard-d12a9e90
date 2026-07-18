@@ -15,9 +15,18 @@ export function AnnouncementBanner() {
   if (hidden) return null
   const current = NOTIFICATIONS[index]
   return (
-    <div className="flex items-center justify-between bg-yellow-400/80 text-yellow-900 p-4 rounded-lg mb-8 fade-in">
-      <div className="flex items-center gap-3">
-        <Megaphone className="w-6 h-6" />
+    <div
+      className="flex items-center justify-between p-3.5 rounded-lg mb-6 fade-in border"
+      style={{
+        backgroundColor: '#fbf3e9',
+        borderColor: 'var(--odoo-accent)',
+        borderLeftWidth: '3px',
+        borderLeftColor: 'var(--odoo-brand)',
+        color: 'var(--odoo-ink)',
+      }}
+    >
+      <div className="flex items-center gap-3 text-sm">
+        <Megaphone className="w-5 h-5 flex-shrink-0" style={{ color: 'var(--odoo-brand)' }} />
         <p>
           <strong>{current.label}</strong> {current.text}
         </p>
@@ -27,7 +36,7 @@ export function AnnouncementBanner() {
           if (index + 1 < NOTIFICATIONS.length) setIndex(index + 1)
           else setHidden(true)
         }}
-        className="p-1 rounded-full hover:bg-yellow-500/50"
+        className="p-1 rounded-md hover:bg-black/5"
         aria-label="Dismiss"
       >
         <X className="w-5 h-5" />

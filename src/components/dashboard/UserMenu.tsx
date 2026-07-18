@@ -60,11 +60,11 @@ export function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button aria-label="Account menu" className="relative rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button aria-label="Account menu" className="relative rounded-full focus:outline-none focus:ring-2 focus:ring-[#243742]">
           <img
-            src="https://placehold.co/40x40/60A5FA/FFFFFF?text=A"
+            src="https://placehold.co/40x40/243742/FFFFFF?text=A"
             alt="User Avatar"
-            className="w-10 h-10 rounded-full border-2 border-white shadow-md"
+            className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
           />
           <span
             className={`absolute bottom-0 right-0 block w-3 h-3 rounded-full ring-2 ring-white ${current.dotClass}`}

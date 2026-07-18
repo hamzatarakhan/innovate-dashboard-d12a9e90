@@ -33,10 +33,12 @@ export function Header() {
   }, [])
 
   return (
-    <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
+    <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
       <div>
-        <h2 className="text-3xl font-bold text-gray-900">{greeting}</h2>
-        <p className="text-gray-500 mt-1">{dateTime || 'Loading date and time...'}</p>
+        <h2 className="odoo-heading text-2xl">{greeting}</h2>
+        <p className="mt-1 text-sm" style={{ color: 'var(--odoo-muted)' }}>
+          {dateTime || 'Loading date and time...'}
+        </p>
       </div>
       <div className="flex items-center gap-3 mt-4 sm:mt-0">
         <MessagesMenu />

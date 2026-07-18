@@ -35,10 +35,11 @@ export function NotificationsMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className="relative p-2 rounded-full bg-white/80 hover:bg-gray-100"
+          className="relative p-2 rounded-md bg-white border hover:bg-gray-50"
+          style={{ borderColor: 'var(--odoo-line)' }}
           aria-label={`Notifications${unread ? ` (${unread} unread)` : ''}`}
         >
-          <Bell className="w-5 h-5 text-gray-600" />
+          <Bell className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} />
           {unread > 0 && (
             <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold ring-2 ring-white flex items-center justify-center">
               {unread}
@@ -52,7 +53,8 @@ export function NotificationsMenu() {
           {unread > 0 && (
             <button
               onClick={markAll}
-              className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1"
+              className="text-xs font-medium hover:underline flex items-center gap-1"
+              style={{ color: 'var(--odoo-brand)' }}
             >
               <CheckCheck className="w-3.5 h-3.5" /> Mark all read
             </button>

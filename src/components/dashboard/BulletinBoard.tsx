@@ -25,12 +25,12 @@ export function BulletinBoard() {
     setNotes(notes.map((n) => (n.id === id ? { ...n, text } : n)))
 
   return (
-    <div className="md:col-span-2 lg:col-span-4 glassmorphism rounded-xl p-6 card-hover-effect fade-in">
+    <div className="md:col-span-2 lg:col-span-4 odoo-card p-5 fade-in">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-bold">Digital Bulletin Board</h3>
+        <h3 className="odoo-heading text-base">Digital Bulletin Board</h3>
         <button
           onClick={addNote}
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          className="odoo-btn odoo-btn-primary px-4 py-2 text-sm"
         >
           <Plus className="w-4 h-4" /> Add Note
         </button>

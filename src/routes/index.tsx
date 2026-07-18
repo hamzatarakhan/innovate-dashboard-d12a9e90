@@ -25,14 +25,14 @@ export const Route = createFileRoute('/')({
 
 function DashboardPage() {
   return (
-    <div className="text-gray-800 relative min-h-screen">
-      <div className="fixed inset-0 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 -z-10" />
+    <div className="relative min-h-screen" style={{ color: 'var(--odoo-ink)' }}>
+      <div className="fixed inset-0 -z-10" style={{ backgroundColor: 'var(--odoo-page)' }} />
       <div className="flex flex-col lg:flex-row min-h-screen">
         <Sidebar />
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
           <Header />
           <AnnouncementBanner />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             <StatsRow />
             <UpcomingEvents />
             <BlogsCarousel />

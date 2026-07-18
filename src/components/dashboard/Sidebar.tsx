@@ -51,7 +51,7 @@ export function Sidebar() {
   }, [open])
 
   const navLinks = (
-    <nav className="space-y-1">
+    <nav className="space-y-0.5">
       {navItems.map((item) => {
         const isActive = currentPath === item.url
         return (
@@ -59,13 +59,19 @@ export function Sidebar() {
             key={item.title}
             to={item.url}
             onClick={() => setOpen(false)}
-            className={`flex items-center gap-3 px-4 py-2 rounded-lg font-semibold transition-colors ${
+            className={`group relative flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
               isActive
-                ? 'text-white bg-blue-600'
-                : 'text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+                ? 'bg-white/10 text-white'
+                : 'text-white/70 hover:bg-white/5 hover:text-white'
             }`}
           >
-            <item.icon className="w-5 h-5" /> {item.title}
+            {isActive && (
+              <span
+                className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-full"
+                style={{ backgroundColor: 'var(--odoo-accent)' }}
+              />
+            )}
+            <item.icon className="h-[18px] w-[18px] flex-shrink-0" /> {item.title}
           </Link>
         )
       })}
@@ -75,19 +81,22 @@ export function Sidebar() {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="lg:hidden flex items-center gap-3 bg-white/70 backdrop-blur-lg border-b border-gray-200/50 px-4 py-3 sticky top-0 z-30">
+      <div
+        className="lg:hidden flex items-center gap-3 px-4 py-3 sticky top-0 z-30"
+        style={{ backgroundColor: 'var(--odoo-brand)' }}
+      >
         <button
           onClick={() => setOpen(true)}
           aria-label="Open menu"
-          className="p-2 rounded-lg hover:bg-gray-100 text-gray-700"
+          className="p-2 rounded-md text-white/80 hover:bg-white/10"
         >
           <Menu className="w-6 h-6" />
         </button>
         <div className="flex items-center gap-2">
-          <div className="bg-blue-600 p-1.5 rounded-lg">
-            <Zap className="w-5 h-5 text-white" />
+          <div className="rounded-md p-1.5" style={{ backgroundColor: 'var(--odoo-accent)' }}>
+            <Zap className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} />
           </div>
-          <h1 className="text-lg font-bold text-gray-800">Innovate Inc.</h1>
+          <h1 className="text-lg font-semibold tracking-tight text-white">Innovate Inc.</h1>
         </div>
       </div>
 
@@ -101,31 +110,32 @@ export function Sidebar() {
 
       {/* Sidebar / drawer */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw] bg-white/95 lg:bg-white/70 backdrop-blur-lg border-r border-gray-200/50 p-6 flex flex-col flex-shrink-0 overflow-y-auto transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 lg:z-auto lg:w-64 lg:max-w-none ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw] p-4 flex flex-col flex-shrink-0 overflow-y-auto transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 lg:z-auto lg:w-64 lg:max-w-none ${
             open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}
+        style={{ backgroundColor: 'var(--odoo-brand)' }}
       >
-        <div className="flex items-center justify-between mb-10">
-          <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-2 rounded-lg">
-              <Zap className="w-6 h-6 text-white" />
+        <div className="flex items-center justify-between px-1 mb-6 mt-1">
+          <div className="flex items-center gap-2.5">
+            <div className="rounded-md p-2" style={{ backgroundColor: 'var(--odoo-accent)' }}>
+              <Zap className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} />
             </div>
-            <h1 className="text-2xl font-bold text-gray-800">Innovate Inc.</h1>
+            <h1 className="text-lg font-semibold tracking-tight text-white">Innovate Inc.</h1>
           </div>
           <button
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="lg:hidden p-1 rounded-lg hover:bg-gray-100 text-gray-700"
+            className="lg:hidden p-1 rounded-md text-white/80 hover:bg-white/10"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
         <div className="flex-1">{navLinks}</div>
-        <div className="mt-6 pt-6 border-t border-gray-200/60 flex items-center gap-3 text-gray-500">
-          <div className="bg-gray-200/70 p-1.5 rounded-md">
-            <Zap className="w-5 h-5" />
+        <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-3 text-white/50">
+          <div className="rounded-md bg-white/10 p-1.5">
+            <Zap className="w-4 h-4" />
           </div>
-          <span className="font-semibold text-sm">Your logo</span>
+          <span className="text-xs font-medium">Powered by Odoo 19</span>
         </div>
       </aside>
     </>

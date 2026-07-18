@@ -13,12 +13,13 @@ export function MessagesMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className="relative p-2 rounded-full bg-white/80 hover:bg-gray-100"
+          className="relative p-2 rounded-md bg-white border hover:bg-gray-50"
+          style={{ borderColor: 'var(--odoo-line)' }}
           aria-label={`Messages${unread ? ` (${unread} unread)` : ''}`}
         >
-          <MessageSquare className="w-5 h-5 text-gray-600" />
+          <MessageSquare className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} />
           {unread > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-blue-600 text-white text-[10px] font-bold ring-2 ring-white flex items-center justify-center">
+            <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full text-white text-[10px] font-bold ring-2 ring-white flex items-center justify-center" style={{ backgroundColor: 'var(--odoo-brand)' }}>
               {unread}
             </span>
           )}
@@ -50,7 +51,7 @@ export function MessagesMenu() {
           ))}
         </ul>
         <div className="px-4 py-2.5 border-t text-center">
-          <button className="text-xs font-semibold text-blue-600 hover:text-blue-700">
+          <button className="text-xs font-semibold hover:underline" style={{ color: 'var(--odoo-brand)' }}>
             View all messages
           </button>
         </div>
