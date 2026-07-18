@@ -1,4 +1,4 @@
-import { CheckCircle, MessageSquare, Cloudy } from 'lucide-react'
+import { CheckCircle, MessageSquare, Newspaper } from 'lucide-react'
 
 export function StatsRow() {
   return (
@@ -18,10 +18,12 @@ export function StatsRow() {
         </div>
       </div>
       <div className="glassmorphism rounded-xl p-6 flex items-center gap-4 card-hover-effect">
-        <Cloudy className="w-10 h-10 text-indigo-500" />
-        <div>
-          <p className="text-gray-500">Pune Weather</p>
-          <p className="text-2xl font-bold">28°C, Cloudy</p>
+        <Newspaper className="w-10 h-10 text-indigo-500" />
+        <div className="min-w-0">
+          <p className="text-gray-500">News of the Day</p>
+          <p className="text-base font-bold leading-snug line-clamp-2">
+            Innovate Inc. wins Best Workplace 2026 award
+          </p>
         </div>
       </div>
     </div>
