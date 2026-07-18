@@ -113,14 +113,14 @@ const STICKY_COLORS = [
 ]
 
 const SIDEBAR_ITEMS = [
-  { title: 'Dashboard', icon: LayoutDashboard, enabled: true },
-  { title: 'Discuss', icon: MessageCircle, enabled: false },
-  { title: 'Calendar', icon: Calendar, enabled: false },
-  { title: 'To-do', icon: CheckSquare, enabled: false },
-  { title: 'Library', icon: BookOpen, enabled: false },
-  { title: 'Tasks', icon: ListTodo, enabled: false },
-  { title: 'Internal Portal', icon: Globe, enabled: false },
-  { title: 'Surveys', icon: FileQuestion, enabled: false },
+  { title: 'Dashboard', icon: LayoutDashboard, color: 'text-white', enabled: true },
+  { title: 'Discuss', icon: MessageCircle, color: 'text-orange-400', enabled: false },
+  { title: 'Calendar', icon: Calendar, color: 'text-rose-400', enabled: false },
+  { title: 'To-do', icon: CheckSquare, color: 'text-teal-300', enabled: false },
+  { title: 'Library', icon: BookOpen, color: 'text-blue-400', enabled: false },
+  { title: 'Tasks', icon: ListTodo, color: 'text-cyan-300', enabled: false },
+  { title: 'Internal Portal', icon: Globe, color: 'text-emerald-300', enabled: false },
+  { title: 'Surveys', icon: FileQuestion, color: 'text-sky-400', enabled: false },
 ]
 
 const SPACING = [
@@ -435,13 +435,9 @@ function DesignSystemPage() {
 
         {/* 09 · Sidebar — interactive preview */}
         <section>
-          <SectionTitle n="09" title="Sidebar" sub="Navy app-menu. Live preview — click enabled items. Disabled items are muted & inert." />
+          <SectionTitle n="09" title="Sidebar" sub="Dark navy app-menu with colored icons. Brand lives in the top navbar, not here. Live preview — click enabled items." />
           <div className="grid gap-6 md:grid-cols-[16rem_1fr]">
-            <div className="rounded-lg p-4 flex flex-col max-h-[500px] overflow-y-auto" style={{ backgroundColor: 'var(--odoo-brand)' }}>
-              <div className="flex items-center gap-2.5 px-1 mb-6 mt-1">
-                <div className="rounded-md p-2" style={{ backgroundColor: 'var(--odoo-accent)' }}><Zap className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} /></div>
-                <h1 className="text-lg font-semibold tracking-tight text-white">Innovate Inc.</h1>
-              </div>
+            <div className="rounded-lg p-3 flex flex-col max-h-[500px] overflow-y-auto" style={{ backgroundColor: 'var(--odoo-brand)' }}>
               <nav className="space-y-0.5 flex-1">
                 {SIDEBAR_ITEMS.map((item) => {
                   if (!item.enabled) {
@@ -450,9 +446,9 @@ function DesignSystemPage() {
                         key={item.title}
                         type="button"
                         onClick={() => {}}
-                        className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-left text-white/70 hover:bg-white/5 hover:text-white transition-colors"
+                        className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-left text-white/75 hover:bg-white/5 hover:text-white transition-colors"
                       >
-                        <item.icon className="h-[18px] w-[18px]" /> {item.title}
+                        <item.icon className={`h-[18px] w-[18px] ${item.color}`} /> {item.title}
                       </button>
                     )
                   }
@@ -462,81 +458,90 @@ function DesignSystemPage() {
                       key={item.title}
                       onClick={() => setActiveNav(item.title)}
                       className={`relative w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-left transition-colors ${
-                        isActive ? 'bg-white/10 text-white' : 'text-white/70 hover:bg-white/5 hover:text-white'
+                        isActive ? 'bg-white/10 text-white' : 'text-white/75 hover:bg-white/5 hover:text-white'
                       }`}
                     >
                       {isActive && <span className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-full" style={{ backgroundColor: 'var(--odoo-accent)' }} />}
-                      <item.icon className="h-[18px] w-[18px]" /> {item.title}
+                      <item.icon className={`h-[18px] w-[18px] ${item.color}`} /> {item.title}
                     </button>
                   )
                 })}
               </nav>
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-3 text-white/50">
-                <div className="rounded-md bg-white/10 p-1.5"><Zap className="w-4 h-4" /></div>
-                <span className="text-xs font-medium">Powered by Odoo 19</span>
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-center">
+                <span className="text-[11px] font-medium text-white/40">Powered by Odoo 19</span>
               </div>
             </div>
             <div className="odoo-card p-6 space-y-4 text-sm">
               <p className="font-semibold" style={{ color: 'var(--odoo-ink)' }}>Spec</p>
               <ul className="space-y-2 list-disc pl-5" style={{ color: 'var(--odoo-muted)' }}>
                 <li>Surface: <code className="bg-gray-100 px-1 rounded">backgroundColor: var(--odoo-brand)</code> (#243742)</li>
-                <li>Width: <code className="bg-gray-100 px-1 rounded">lg:w-64</code> · Drawer on mobile <code className="bg-gray-100 px-1 rounded">w-72 max-w-[80vw]</code></li>
+                <li>Width: <code className="bg-gray-100 px-1 rounded">lg:w-60</code> · Drawer on mobile <code className="bg-gray-100 px-1 rounded">w-72 max-w-[80vw]</code></li>
+                <li>No brand header — the logo &amp; app name live in the top navbar.</li>
+                <li>Colored per-app icons (e.g. <code className="bg-gray-100 px-1 rounded">text-orange-400</code>, <code className="bg-gray-100 px-1 rounded">text-rose-400</code>) on white labels.</li>
                 <li>Active item: <code className="bg-gray-100 px-1 rounded">bg-white/10 text-white</code> + sand accent bar</li>
-                <li>Idle item: <code className="bg-gray-100 px-1 rounded">text-white/70 hover:bg-white/5</code></li>
-                <li>Item padding: <code className="bg-gray-100 px-1 rounded">px-3 py-2 rounded-md text-sm</code></li>
-                <li>Icon size: <code className="bg-gray-100 px-1 rounded">h-[18px] w-[18px]</code></li>
+                <li>Idle item: <code className="bg-gray-100 px-1 rounded">text-white/75 hover:bg-white/5</code></li>
+                <li>Item padding: <code className="bg-gray-100 px-1 rounded">px-3 py-2 rounded-md text-sm</code>; icon <code className="bg-gray-100 px-1 rounded">h-[18px] w-[18px]</code></li>
                 <li>Only <strong>Dashboard</strong> &amp; <strong>Design System</strong> navigate today — the rest look identical but are no-ops on click.</li>
               </ul>
-              <p className="font-semibold pt-2" style={{ color: 'var(--odoo-ink)' }}>Mobile top bar</p>
-              <div className="flex items-center gap-3 px-4 py-3 rounded-lg" style={{ backgroundColor: 'var(--odoo-brand)' }}>
-                <button className="p-2 rounded-md text-white/80 hover:bg-white/10"><Menu className="w-6 h-6" /></button>
-                <div className="flex items-center gap-2">
-                  <div className="rounded-md p-1.5" style={{ backgroundColor: 'var(--odoo-accent)' }}><Zap className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} /></div>
-                  <h1 className="text-lg font-semibold tracking-tight text-white">Innovate Inc.</h1>
-                </div>
-              </div>
+              <p className="font-semibold pt-2" style={{ color: 'var(--odoo-ink)' }}>Mobile</p>
+              <p className="text-xs" style={{ color: 'var(--odoo-muted)' }}>
+                Below <code className="bg-gray-100 px-1 rounded">lg</code> the sidebar collapses into a drawer opened by the hamburger in the top navbar (see section 10).
+              </p>
             </div>
           </div>
         </section>
 
-        {/* 10 · Header pattern */}
+        {/* 10 · Top navbar + page heading */}
         <section>
-          <SectionTitle n="10" title="Page Header" sub="Greeting left, actions right (messages · notifications · avatar)." />
-          <div className="odoo-card p-6">
-            <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-              <div>
-                <h2 className="odoo-heading text-2xl">Good Morning, Alex!</h2>
-                <p className="mt-1 text-sm" style={{ color: 'var(--odoo-muted)' }}>Friday, July 17, 2026 · 10:24 AM</p>
+          <SectionTitle n="10" title="Top Navbar & Page Heading" sub="Odoo-style dark navbar holds the chrome; the page body just carries a greeting." />
+
+          {/* Top navbar (chrome) */}
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--odoo-muted)' }}>Top navbar (app chrome)</p>
+          <div className="rounded-lg overflow-hidden border" style={{ borderColor: 'var(--odoo-line)' }}>
+            <div className="flex items-center gap-1 px-2 sm:px-3 h-12 text-white" style={{ backgroundColor: 'var(--odoo-brand)' }}>
+              <button className="lg:hidden p-2 rounded-md text-white/80 hover:bg-white/10" aria-label="Open menu"><Menu className="w-5 h-5" /></button>
+              <button className="p-2 rounded-md text-white/80 hover:bg-white/10" aria-label="Apps"><LayoutGrid className="w-5 h-5" /></button>
+              <div className="flex items-center gap-2 pl-1 pr-2">
+                <div className="rounded-md p-1" style={{ backgroundColor: 'var(--odoo-accent)' }}><Zap className="w-4 h-4" style={{ color: 'var(--odoo-brand)' }} /></div>
+                <span className="font-semibold tracking-tight hidden sm:inline">Dashboard</span>
               </div>
-              <div className="flex items-center gap-3 mt-4 sm:mt-0">
-                <button className="relative p-2 rounded-md bg-white border hover:bg-gray-50" style={{ borderColor: 'var(--odoo-line)' }} aria-label="Messages">
-                  <MessageSquare className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} />
-                  <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full text-white text-[10px] font-bold ring-2 ring-white flex items-center justify-center" style={{ backgroundColor: 'var(--odoo-brand)' }}>2</span>
+              <nav className="hidden md:flex items-center gap-0.5">
+                <span className="px-3 py-1.5 rounded-md text-sm bg-white/10 text-white">Dashboard</span>
+                <span className="px-3 py-1.5 rounded-md text-sm text-white/75">Useful Links</span>
+                <span className="px-3 py-1.5 rounded-md text-sm text-white/75">SMS Logs</span>
+              </nav>
+              <div className="ml-auto flex items-center gap-1 sm:gap-2 pr-1">
+                <button className="relative p-2 rounded-md text-white/80 hover:bg-white/10" aria-label="Messages">
+                  <MessageSquare className="w-5 h-5" />
+                  <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center" style={{ boxShadow: '0 0 0 2px var(--odoo-brand)' }}>2</span>
                 </button>
-                <button className="relative p-2 rounded-md bg-white border hover:bg-gray-50" style={{ borderColor: 'var(--odoo-line)' }} aria-label="Notifications">
-                  <Bell className="w-5 h-5" style={{ color: 'var(--odoo-brand)' }} />
-                  <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full bg-rose-500 text-white text-[10px] font-bold ring-2 ring-white flex items-center justify-center">5</span>
+                <button className="relative p-2 rounded-md text-white/80 hover:bg-white/10" aria-label="Notifications">
+                  <Bell className="w-5 h-5" />
+                  <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center" style={{ boxShadow: '0 0 0 2px var(--odoo-brand)' }}>5</span>
                 </button>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button className="relative flex items-center gap-2 rounded-md bg-white border hover:bg-gray-50 p-1 pr-3" style={{ borderColor: 'var(--odoo-line)' }}>
-                      <div className="relative">
-                        <div className="w-8 h-8 rounded-full text-white font-semibold flex items-center justify-center text-sm" style={{ backgroundColor: 'var(--odoo-brand)' }}>A</div>
-                        <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-500 ring-2 ring-white" />
-                      </div>
-                      <span className="text-sm font-semibold" style={{ color: 'var(--odoo-ink)' }}>Alex</span>
-                      <ChevronDown className="w-4 h-4" style={{ color: 'var(--odoo-muted)' }} />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-56">
-                    <DropdownMenuItem><User className="w-4 h-4 mr-2" /> My Preferences</DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem className="text-red-600 focus:text-red-700"><LogOut className="w-4 h-4 mr-2" /> Log out</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <button className="relative flex items-center rounded-md p-1 hover:bg-white/10" aria-label="Account">
+                  <div className="relative">
+                    <div className="w-8 h-8 rounded-full text-white font-semibold flex items-center justify-center text-sm" style={{ backgroundColor: '#8b5cf6' }}>A</div>
+                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-500" style={{ boxShadow: '0 0 0 2px var(--odoo-brand)' }} />
+                  </div>
+                </button>
               </div>
-            </header>
+            </div>
           </div>
+
+          {/* In-page greeting (content) */}
+          <p className="mt-5 mb-2 text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--odoo-muted)' }}>Page heading (content)</p>
+          <div className="odoo-card p-6">
+            <h2 className="odoo-heading text-2xl">Good Morning, Alex!</h2>
+            <p className="mt-1 text-sm" style={{ color: 'var(--odoo-muted)' }}>Friday, July 17, 2026 · 10:24 AM</p>
+          </div>
+
+          <ul className="mt-4 space-y-1.5 list-disc pl-5 text-sm" style={{ color: 'var(--odoo-muted)' }}>
+            <li>Navbar surface: <code className="bg-gray-100 px-1 rounded">backgroundColor: var(--odoo-brand)</code>, height <code className="bg-gray-100 px-1 rounded">h-12</code>.</li>
+            <li>Left → right: hamburger (mobile) · apps waffle · app name · app menu · systray (messages · notifications · avatar).</li>
+            <li>Systray on the navbar uses white icons; badges are <code className="bg-gray-100 px-1 rounded">bg-rose-500</code> ringed with the navbar color.</li>
+            <li>Only the greeting/date lives in the page body — the systray is <em>not</em> repeated in content.</li>
+          </ul>
         </section>
 
         {/* 11 · Stats */}

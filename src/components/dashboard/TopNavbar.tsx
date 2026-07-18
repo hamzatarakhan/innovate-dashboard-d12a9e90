@@ -54,13 +54,9 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
               key={m.label}
               to={m.to}
               activeOptions={{ exact: true }}
-              className={({ isActive }) =>
-                `px-3 py-1.5 rounded-md text-sm transition-colors ${
-                  isActive
-                    ? 'bg-white/10 text-white'
-                    : 'text-white/75 hover:bg-white/10 hover:text-white'
-                }`
-              }
+              className="px-3 py-1.5 rounded-md text-sm transition-colors"
+              activeProps={{ className: 'bg-white/10 text-white' }}
+              inactiveProps={{ className: 'text-white/75 hover:bg-white/10 hover:text-white' }}
             >
               {m.label}
             </Link>
