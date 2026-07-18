@@ -29,14 +29,13 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
       </button>
 
       {/* Apps waffle */}
-      <button
-        type="button"
-        onClick={() => {}}
+      <Link
+        to="/apps"
         aria-label="Apps"
         className="p-2 rounded-md text-white/80 hover:bg-white/10"
       >
         <LayoutGrid className="w-5 h-5" />
-      </button>
+      </Link>
 
       {/* App brand + name */}
       <Link to="/" className="flex items-center gap-2 pl-1 pr-2">
