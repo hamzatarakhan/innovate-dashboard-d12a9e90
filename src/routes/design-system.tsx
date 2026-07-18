@@ -54,6 +54,8 @@ import {
 } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ThemeSwitcher } from '@/components/ThemeSwitcher'
+import { Sidebar } from '@/components/dashboard/Sidebar'
+
 
 export const Route = createFileRoute('/design-system')({
   head: () => ({
