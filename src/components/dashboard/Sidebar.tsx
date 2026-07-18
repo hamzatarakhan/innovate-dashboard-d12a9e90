@@ -19,18 +19,18 @@ import {
 } from 'lucide-react'
 
 const navItems = [
-  { title: 'Dashboard', url: '/', icon: LayoutDashboard },
-  { title: 'Discuss', url: '/discuss', icon: MessageCircle },
-  { title: 'Calendar', url: '/calendar', icon: Calendar },
-  { title: 'To-do', url: '/todo', icon: CheckSquare },
-  { title: 'Library', url: '/library', icon: BookOpen },
-  { title: 'Tasks', url: '/tasks', icon: ListTodo },
-  { title: 'Internal Portal', url: '/internal-portal', icon: Globe },
-  { title: 'Surveys', url: '/surveys', icon: FileQuestion },
-  { title: 'Employees', url: '/employees', icon: Users },
-  { title: 'Apps', url: '/apps', icon: LayoutGrid },
-  { title: 'Settings', url: '/settings', icon: Settings },
-  { title: 'Design System', url: '/design-system', icon: Palette },
+  { title: 'Dashboard', url: '/', icon: LayoutDashboard, enabled: true },
+  { title: 'Discuss', url: '/discuss', icon: MessageCircle, enabled: false },
+  { title: 'Calendar', url: '/calendar', icon: Calendar, enabled: false },
+  { title: 'To-do', url: '/todo', icon: CheckSquare, enabled: false },
+  { title: 'Library', url: '/library', icon: BookOpen, enabled: false },
+  { title: 'Tasks', url: '/tasks', icon: ListTodo, enabled: false },
+  { title: 'Internal Portal', url: '/internal-portal', icon: Globe, enabled: false },
+  { title: 'Surveys', url: '/surveys', icon: FileQuestion, enabled: false },
+  { title: 'Employees', url: '/employees', icon: Users, enabled: false },
+  { title: 'Apps', url: '/apps', icon: LayoutGrid, enabled: false },
+  { title: 'Settings', url: '/settings', icon: Settings, enabled: false },
+  { title: 'Design System', url: '/design-system', icon: Palette, enabled: true },
 ]
 
 export function Sidebar() {
@@ -54,6 +54,20 @@ export function Sidebar() {
     <nav className="space-y-0.5">
       {navItems.map((item) => {
         const isActive = currentPath === item.url
+
+        if (!item.enabled) {
+          return (
+            <div
+              key={item.title}
+              aria-disabled="true"
+              title="Coming soon"
+              className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-white/30 cursor-not-allowed select-none"
+            >
+              <item.icon className="h-[18px] w-[18px] flex-shrink-0" /> {item.title}
+            </div>
+          )
+        }
+
         return (
           <Link
             key={item.title}
