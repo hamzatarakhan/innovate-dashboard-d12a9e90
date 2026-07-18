@@ -12,6 +12,7 @@ import {
   Users,
   LayoutGrid,
   Settings,
+  Palette,
   Zap,
   Menu,
   X,
