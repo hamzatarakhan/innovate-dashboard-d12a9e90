@@ -39,12 +39,9 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
       </button>
 
       {/* App brand + name */}
-      <div className="flex items-center gap-2 pl-1 pr-2">
-        <div className="rounded-md p-1" style={{ backgroundColor: 'var(--odoo-accent)' }}>
-          <Zap className="w-4 h-4" style={{ color: 'var(--odoo-brand)' }} />
-        </div>
+      <Link to="/" className="flex items-center gap-2 pl-1 pr-2">
         <span className="font-semibold tracking-tight hidden sm:inline">Dashboard</span>
-      </div>
+      </Link>
 
       {/* App menu items */}
       <nav className="hidden md:flex items-center gap-0.5">
