@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
-import { Settings, LogOut, Check, MinusCircle, Circle } from 'lucide-react'
+import { Settings, LogOut, Check, MinusCircle, Circle, Palette } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   DropdownMenuSub,
@@ -12,6 +13,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuPortal,
 } from '@/components/ui/dropdown-menu'
+import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 
 type Status = 'online' | 'away' | 'dnd' | 'offline'
 
