@@ -12,6 +12,7 @@ import {
   Users,
   LayoutGrid,
   Settings,
+  Palette,
   Zap,
   Menu,
   X,
@@ -29,6 +30,7 @@ const navItems = [
   { title: 'Employees', url: '/employees', icon: Users },
   { title: 'Apps', url: '/apps', icon: LayoutGrid },
   { title: 'Settings', url: '/settings', icon: Settings },
+  { title: 'Design System', url: '/design-system', icon: Palette },
 ]
 
 export function Sidebar() {
