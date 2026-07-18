@@ -450,13 +450,14 @@ function DesignSystemPage() {
                 {SIDEBAR_ITEMS.map((item) => {
                   if (!item.enabled) {
                     return (
-                      <div
+                      <button
                         key={item.title}
-                        aria-disabled="true"
-                        className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-white/30 cursor-not-allowed select-none"
+                        type="button"
+                        onClick={() => {}}
+                        className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-left text-white/70 hover:bg-white/5 hover:text-white transition-colors"
                       >
                         <item.icon className="h-[18px] w-[18px]" /> {item.title}
-                      </div>
+                      </button>
                     )
                   }
                   const isActive = activeNav === item.title
@@ -486,10 +487,9 @@ function DesignSystemPage() {
                 <li>Width: <code className="bg-gray-100 px-1 rounded">lg:w-64</code> · Drawer on mobile <code className="bg-gray-100 px-1 rounded">w-72 max-w-[80vw]</code></li>
                 <li>Active item: <code className="bg-gray-100 px-1 rounded">bg-white/10 text-white</code> + sand accent bar</li>
                 <li>Idle item: <code className="bg-gray-100 px-1 rounded">text-white/70 hover:bg-white/5</code></li>
-                <li>Disabled item: <code className="bg-gray-100 px-1 rounded">text-white/30 cursor-not-allowed</code> (inert)</li>
                 <li>Item padding: <code className="bg-gray-100 px-1 rounded">px-3 py-2 rounded-md text-sm</code></li>
                 <li>Icon size: <code className="bg-gray-100 px-1 rounded">h-[18px] w-[18px]</code></li>
-                <li>Only <strong>Dashboard</strong> &amp; <strong>Design System</strong> are enabled today.</li>
+                <li>Only <strong>Dashboard</strong> &amp; <strong>Design System</strong> navigate today — the rest look identical but are no-ops on click.</li>
               </ul>
               <p className="font-semibold pt-2" style={{ color: 'var(--odoo-ink)' }}>Mobile top bar</p>
               <div className="flex items-center gap-3 px-4 py-3 rounded-lg" style={{ backgroundColor: 'var(--odoo-brand)' }}>

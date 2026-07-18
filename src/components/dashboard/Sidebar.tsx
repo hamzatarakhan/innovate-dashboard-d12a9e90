@@ -56,15 +56,16 @@ export function Sidebar() {
         const isActive = currentPath === item.url
 
         if (!item.enabled) {
+          // Looks like a normal nav item, but clicking is a no-op (no navigation).
           return (
-            <div
+            <button
               key={item.title}
-              aria-disabled="true"
-              title="Coming soon"
-              className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-white/30 cursor-not-allowed select-none"
+              type="button"
+              onClick={() => {}}
+              className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-left text-white/70 hover:bg-white/5 hover:text-white transition-colors"
             >
               <item.icon className="h-[18px] w-[18px] flex-shrink-0" /> {item.title}
-            </div>
+            </button>
           )
         }
 
