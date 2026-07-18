@@ -32,7 +32,7 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
       <Link
         to="/apps"
         aria-label="Apps"
-        className="p-2 rounded-md text-white/80 hover:bg-white/10"
+        className="hidden p-2 rounded-md text-white/80 hover:bg-white/10"
       >
         <LayoutGrid className="w-5 h-5" />
       </Link>
