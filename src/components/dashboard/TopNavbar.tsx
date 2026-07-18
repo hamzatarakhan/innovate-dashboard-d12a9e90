@@ -30,7 +30,7 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
 
       {/* Apps waffle */}
       <Link
-        to="/apps"
+        to="/"
         aria-label="Apps"
         className="p-2 rounded-md text-white/80 hover:bg-white/10"
       >
