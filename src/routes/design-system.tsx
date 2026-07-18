@@ -185,7 +185,10 @@ function DesignSystemPage() {
     <div className="text-gray-800 relative min-h-screen">
       <div className={`fixed inset-0 bg-gradient-to-br ${BG_GRADIENT} -z-10`} />
 
-      <main className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-10 space-y-14">
+      <div className="flex flex-col lg:flex-row min-h-screen">
+        <Sidebar />
+        <main className="flex-1 max-w-6xl mx-auto p-4 sm:p-6 lg:p-10 space-y-14 overflow-y-auto">
+
         {/* Hero */}
         <header className="glassmorphism rounded-xl p-8 fade-in">
           <div className="flex items-center gap-2 text-blue-600 text-sm font-semibold mb-3">
