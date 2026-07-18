@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { LayoutGrid, Menu, Zap } from 'lucide-react'
+import { LayoutGrid, Menu } from 'lucide-react'
 import { MessagesMenu } from './MessagesMenu'
 import { NotificationsMenu } from './NotificationsMenu'
 import { UserMenu } from './UserMenu'
@@ -29,22 +29,18 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
       </button>
 
       {/* Apps waffle */}
-      <button
-        type="button"
-        onClick={() => {}}
+      <Link
+        to="/apps"
         aria-label="Apps"
         className="p-2 rounded-md text-white/80 hover:bg-white/10"
       >
         <LayoutGrid className="w-5 h-5" />
-      </button>
+      </Link>
 
       {/* App brand + name */}
-      <div className="flex items-center gap-2 pl-1 pr-2">
-        <div className="rounded-md p-1" style={{ backgroundColor: 'var(--odoo-accent)' }}>
-          <Zap className="w-4 h-4" style={{ color: 'var(--odoo-brand)' }} />
-        </div>
+      <Link to="/" className="flex items-center gap-2 pl-1 pr-2">
         <span className="font-semibold tracking-tight hidden sm:inline">Dashboard</span>
-      </div>
+      </Link>
 
       {/* App menu items */}
       <nav className="hidden md:flex items-center gap-0.5">
