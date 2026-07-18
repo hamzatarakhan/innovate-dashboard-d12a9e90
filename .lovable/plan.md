@@ -1,84 +1,39 @@
-## Overview
 
-Add messaging + profile menu to the header, a modern login page, working notifications, a richer blog details experience, and make Quick Access cards navigate (with one card opening a link-list modal).
+## Goal
+Introduce a second color palette as an alternative theme. The current blue/purple/pink look stays as the default. A toggle lets the user switch between the two palettes, and the choice applies across every page (sidebar, header, buttons, cards, gradient background, tinted tiles, etc.) and persists across reloads.
 
-Auth scope: since there's no backend yet, login will be **UI-only** (front-end mock — form validation + redirect to `/`, no real accounts). If you want real accounts, we'd need to enable Lovable Cloud — say the word and I'll add it.
+## Palette choices
+- **Theme A — "Aurora" (default, current)**: blue-purple-pink gradient background, blue-600 brand, existing gray text scale and tints. No visual change.
+- **Theme B — "Ember" (new alternative)**: warm palette to contrast Aurora.
+  - Background gradient: soft peach → warm rose → amber
+  - Brand: deep amber/orange (e.g. `#ea580c`)
+  - Accent: teal for balance
+  - Same gray text scale, same glass surfaces, same sticky-note colors (kept neutral so bulletin board still reads well)
 
----
+If you'd prefer a different second palette (e.g. emerald/teal, monochrome dark, navy trust), tell me and I'll swap Ember for that.
 
-## 1. Header upgrades (`src/components/dashboard/Header.tsx`)
+## How the switch works
+1. A `ThemeProvider` at the root sets `data-theme="aurora"` or `data-theme="ember"` on `<html>`, reading/writing `localStorage` key `dashboard-theme`.
+2. All theme-specific values move to CSS custom properties in `src/styles.css`:
+   - `--brand`, `--brand-hover`, `--bg-gradient`, `--tile-tint-*`, etc.
+   - Two blocks: `[data-theme="aurora"] { … }` and `[data-theme="ember"] { … }`.
+3. Components that currently use hardcoded Tailwind color classes (`bg-blue-600`, `from-blue-50 via-purple-50 to-pink-50`, `text-blue-600`, quick-access tile tints) are swapped to reference these CSS vars via small utility classes (e.g. `bg-[var(--brand)]`) or existing semantic classes. No structural/JSX changes.
+4. A **Theme Switcher** UI is added:
+   - Entry point: inside the user menu (avatar dropdown) as a new item **"Appearance"** with two swatch options (Aurora / Ember). Click applies instantly.
+   - Also surfaced on `/design-system` at the top as a live toggle so the reference page previews both palettes.
 
-- Add a **Messages icon** (`MessageSquare` from lucide) to the left of the bell, with an unread badge dot and a dropdown showing recent messages (mock data).
-- Make the **Bell notification** functional: click opens a dropdown listing notifications (mock list from a new `src/data/notifications.ts`), each with title/time/read state, "Mark all as read" action, unread count on the red badge. State kept in component (localStorage-persisted).
-- Make the **avatar** clickable → dropdown menu (shadcn `DropdownMenu`) with:
-  - "My Preferences" → navigates to new `/preferences` route
-  - "Logout" → clears mock auth flag and navigates to `/login`
+## Files touched
+- `src/styles.css` — add `[data-theme="…"]` variable blocks
+- `src/components/ThemeProvider.tsx` — new, provides context + persistence
+- `src/components/ThemeSwitcher.tsx` — new, swatch toggle used in UserMenu and design system
+- `src/routes/__root.tsx` — wrap app with `ThemeProvider`
+- `src/components/dashboard/UserMenu.tsx` — add Appearance entry
+- `src/routes/design-system.tsx` — add live theme toggle at top
+- Component color swaps (background gradient, brand buttons/links, quick-access tile tints, sidebar active state) in: `src/routes/index.tsx`, `Sidebar.tsx`, `Header.tsx`, `QuickAccess.tsx`, `StatsRow.tsx`, `login.tsx`, and any other spot using the blue/purple/pink literals
 
-## 2. Login page (`src/routes/login.tsx`)
+## Out of scope
+- No dark mode (both palettes are light). Say the word if you want a dark variant too.
+- No changes to layout, content, or component structure.
+- `DESIGN_SYSTEM.md` will get a short "Theming" section noting the two palettes and the CSS vars.
 
-Modern, minimal design matching the dashboard's glassmorphism/blue theme:
-- Split layout: left = brand panel (Innovate Inc. logo, gradient, tagline); right = form card.
-- Email + password fields (shadcn `Input`), "Remember me", "Forgot password?" link, primary "Sign in" button, "Continue with Google/Microsoft" mock buttons.
-- Client-side validation only. On submit, set `localStorage.innovateAuth = "1"` and redirect to `/`.
-- Route: `src/routes/login.tsx` with its own SEO `head()`.
-
-## 3. Preferences page (`src/routes/preferences.tsx`)
-
-Simple placeholder page with sections: Profile, Notifications toggles, Theme (visual only). Reachable from the avatar menu.
-
-## 4. Blog details enhancement (`src/routes/blogs.$slug.tsx` + `src/data/blogs.ts`)
-
-Extend `Blog` type with: `createdAt`, `updatedAt`, `readTime`, `tags[]`, `authorAvatar`, `authorRole`.
-
-New details page layout:
-- **Top bar** with back button + a **search input** that filters other blogs (live filtering; shows a dropdown of matching titles linking to their slug).
-- Hero cover image with category badge overlay.
-- Title, then author row: avatar, name, role, date created, read time.
-- Tag chips.
-- Article body (existing `content[]`, styled prose).
-- **Sidebar / bottom section**:
-  - "Related posts" (other blogs, click to navigate).
-  - Share buttons (mock — copy link, Twitter, LinkedIn).
-- SEO metadata (already present, extended with `article:published_time`).
-
-## 5. Quick Access navigation (`src/components/dashboard/QuickAccess.tsx`)
-
-Each of the 6 cards becomes a `<Link>` to a placeholder route so the client can see the navigation flow:
-
-| Card | Behavior |
-|---|---|
-| HR Docs | → `/quick/hr-docs` (placeholder page) |
-| IT Helpdesk | → `/quick/it-helpdesk` (placeholder) |
-| Benefits | → `/quick/benefits` (placeholder) |
-| Policies | → `/quick/policies` (placeholder) |
-| Travel | → `/quick/travel` (placeholder) |
-| **Learning** (renamed from Careers) | **Opens a modal** listing curated external links (from a `src/data/learningLinks.ts` array — title + url, clickable, opens in new tab). This simulates the "admin-added links" use case. |
-
-Placeholder pages: one shared component under `src/routes/quick.$section.tsx` (dynamic route) — renders a titled "Coming soon" scaffold based on the slug, so we don't need six separate files.
-
-Modal built with shadcn `Dialog`.
-
----
-
-## Files to add
-- `src/routes/login.tsx`
-- `src/routes/preferences.tsx`
-- `src/routes/quick.$section.tsx`
-- `src/data/notifications.ts`
-- `src/data/messages.ts`
-- `src/data/learningLinks.ts`
-- `src/components/dashboard/NotificationsMenu.tsx`
-- `src/components/dashboard/MessagesMenu.tsx`
-- `src/components/dashboard/UserMenu.tsx`
-- `src/components/dashboard/LearningLinksModal.tsx`
-
-## Files to modify
-- `src/components/dashboard/Header.tsx` — mount the three menus
-- `src/components/dashboard/QuickAccess.tsx` — links + modal trigger
-- `src/routes/blogs.$slug.tsx` — new layout with search + author block + related
-- `src/data/blogs.ts` — extended fields
-
-## Out of scope (confirm if you want it)
-- Real authentication / user accounts (needs Lovable Cloud).
-- Persisting messages/notifications across users (currently mock + localStorage).
-- Protecting routes behind login (login is currently decorative; every route stays public).
+Confirm the plan (and the Ember choice, or name a different second palette) and I'll implement.

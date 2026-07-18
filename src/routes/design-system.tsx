@@ -53,6 +53,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 
 export const Route = createFileRoute('/design-system')({
   head: () => ({
@@ -207,6 +208,17 @@ function DesignSystemPage() {
             )}
           </div>
         </header>
+
+        {/* Theme switcher */}
+        <section className="glassmorphism rounded-xl p-6 fade-in">
+          <div className="flex items-center gap-2 text-gray-900 font-semibold mb-1">
+            <Sparkles className="w-4 h-4 text-blue-600" /> Color palette
+          </div>
+          <p className="text-sm text-gray-600 mb-4">
+            Switch the active palette live — the change applies to every page in the app.
+          </p>
+          <ThemeSwitcher className="max-w-xl" />
+        </section>
 
         {/* 01 · Background */}
         <section>

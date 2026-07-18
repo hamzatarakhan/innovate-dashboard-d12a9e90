@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from '@tanstack/react-router'
-import { Settings, LogOut, Check, MinusCircle, Circle } from 'lucide-react'
+import { Settings, LogOut, Check, MinusCircle, Circle, Palette } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   DropdownMenuSub,
@@ -12,6 +13,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuPortal,
 } from '@/components/ui/dropdown-menu'
+import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 
 type Status = 'online' | 'away' | 'dnd' | 'offline'
 
@@ -92,6 +94,21 @@ export function UserMenu() {
                   </div>
                 </DropdownMenuItem>
               ))}
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+        <DropdownMenuSeparator />
+        <DropdownMenuSeparator />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger className="cursor-pointer">
+            <Palette className="w-4 h-4 mr-2" /> Appearance
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent className="w-72 p-2">
+              <DropdownMenuLabel className="px-1 pb-1 text-xs font-semibold text-gray-500">
+                Color palette
+              </DropdownMenuLabel>
+              <ThemeSwitcher />
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
         </DropdownMenuSub>
