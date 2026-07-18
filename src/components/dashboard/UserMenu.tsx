@@ -98,6 +98,21 @@ export function UserMenu() {
           </DropdownMenuPortal>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
+        <DropdownMenuSeparator />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger className="cursor-pointer">
+            <Palette className="w-4 h-4 mr-2" /> Appearance
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent className="w-72 p-2">
+              <DropdownMenuLabel className="px-1 pb-1 text-xs font-semibold text-gray-500">
+                Color palette
+              </DropdownMenuLabel>
+              <ThemeSwitcher />
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => navigate({ to: '/preferences' })} className="cursor-pointer">
           <Settings className="w-4 h-4 mr-2" /> My Preferences
         </DropdownMenuItem>
