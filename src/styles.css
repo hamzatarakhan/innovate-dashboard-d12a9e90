@@ -164,3 +164,45 @@
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ===========================================================
+ * Theming — two palettes selected via [data-theme] on <html>
+ * "aurora" (default) is the existing blue/purple/pink look.
+ * "ember" is a warm amber/rose alternative. It works by
+ * remapping the specific Tailwind color utilities the app
+ * actually uses, so no component JSX needs to change.
+ * =========================================================== */
+
+/* Page shell gradient (index dashboard) */
+[data-theme="ember"] .from-blue-100.via-purple-100.to-pink-100 {
+  background-image: linear-gradient(to bottom right, #ffedd5, #fecdd3, #fed7aa) !important;
+}
+/* Login + quick section soft gradient */
+[data-theme="ember"] .from-blue-50.via-white.to-purple-50 {
+  background-image: linear-gradient(to bottom right, #fff7ed, #ffffff, #fff1f2) !important;
+}
+/* Login brand panel gradient */
+[data-theme="ember"] .from-blue-600.via-indigo-600.to-purple-700 {
+  background-image: linear-gradient(to bottom right, #ea580c, #db2777, #9f1239) !important;
+}
+
+/* Brand color: blue-600 -> ember orange-600, blue-700 -> orange-700 */
+[data-theme="ember"] .bg-blue-600 { background-color: #ea580c !important; }
+[data-theme="ember"] .hover\:bg-blue-700:hover { background-color: #c2410c !important; }
+[data-theme="ember"] .text-blue-600 { color: #ea580c !important; }
+[data-theme="ember"] .hover\:text-blue-700:hover { color: #c2410c !important; }
+[data-theme="ember"] .accent-blue-600 { accent-color: #ea580c !important; }
+
+/* Brand tints used for icon badges + hover states */
+[data-theme="ember"] .bg-blue-100 { background-color: #ffedd5 !important; }
+[data-theme="ember"] .bg-blue-100\/50 { background-color: rgb(255 237 213 / 0.5) !important; }
+[data-theme="ember"] .bg-blue-100\/60 { background-color: rgb(255 237 213 / 0.6) !important; }
+[data-theme="ember"] .bg-blue-50 { background-color: #fff7ed !important; }
+[data-theme="ember"] .hover\:bg-blue-50:hover { background-color: #fff7ed !important; }
+[data-theme="ember"] .text-blue-700 { color: #9a3412 !important; }
+[data-theme="ember"] .text-blue-800 { color: #7c2d12 !important; }
+
+/* Focus rings + borders that key off blue-500 */
+[data-theme="ember"] .focus\:border-blue-500:focus { border-color: #fb923c !important; }
+[data-theme="ember"] .focus\:ring-blue-500:focus { --tw-ring-color: #fb923c !important; box-shadow: 0 0 0 2px #fb923c !important; }
+[data-theme="ember"] .focus\:ring-2.focus\:ring-blue-500:focus { box-shadow: 0 0 0 2px #fb923c !important; }
