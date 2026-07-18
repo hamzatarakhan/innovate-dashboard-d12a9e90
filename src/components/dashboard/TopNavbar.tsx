@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { LayoutGrid, Menu, Zap } from 'lucide-react'
+import { LayoutGrid, Menu } from 'lucide-react'
 import { MessagesMenu } from './MessagesMenu'
 import { NotificationsMenu } from './NotificationsMenu'
 import { UserMenu } from './UserMenu'
