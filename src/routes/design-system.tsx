@@ -899,6 +899,8 @@ function DesignSystemPage() {
           Innovate Inc. · Design System · Keep it consistent.
         </footer>
       </main>
+      </div>
     </div>
   )
 }
+
