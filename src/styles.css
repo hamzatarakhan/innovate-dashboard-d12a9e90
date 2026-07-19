@@ -297,3 +297,45 @@ body {
 [data-theme="ember"] .focus\:border-blue-500:focus { border-color: #fb923c !important; }
 [data-theme="ember"] .focus\:ring-blue-500:focus { --tw-ring-color: #fb923c !important; box-shadow: 0 0 0 2px #fb923c !important; }
 [data-theme="ember"] .focus\:ring-2.focus\:ring-blue-500:focus { box-shadow: 0 0 0 2px #fb923c !important; }
+
+/* ===========================================================
+ * "graphite" — neutral slate with soft yellow accents.
+ * Inspired by the Odoo task-list reference: mostly white,
+ * dark slate text, subtle yellow/rose highlights.
+ * =========================================================== */
+
+/* Page shell gradient (index dashboard) */
+[data-theme="graphite"] .from-blue-100.via-purple-100.to-pink-100 {
+  background-image: linear-gradient(to bottom right, #f8fafc, #f1f5f9, #fef9c3) !important;
+}
+/* Login + quick section soft gradient */
+[data-theme="graphite"] .from-blue-50.via-white.to-purple-50 {
+  background-image: linear-gradient(to bottom right, #f8fafc, #ffffff, #f1f5f9) !important;
+}
+/* Login brand panel gradient */
+[data-theme="graphite"] .from-blue-600.via-indigo-600.to-purple-700 {
+  background-image: linear-gradient(to bottom right, #1e293b, #334155, #0f172a) !important;
+}
+
+/* Brand color: slate primary, yellow highlights on hover */
+[data-theme="graphite"] .bg-blue-600 { background-color: #334155 !important; }
+[data-theme="graphite"] .bg-blue-700 { background-color: #1e293b !important; }
+[data-theme="graphite"] .hover\:bg-blue-700:hover { background-color: #0f172a !important; }
+[data-theme="graphite"] .text-blue-600 { color: #334155 !important; }
+[data-theme="graphite"] .hover\:text-blue-700:hover { color: #0f172a !important; }
+[data-theme="graphite"] .accent-blue-600 { accent-color: #334155 !important; }
+
+/* Brand tints — soft yellow badges + slate hovers */
+[data-theme="graphite"] .bg-blue-100 { background-color: #fef3c7 !important; }
+[data-theme="graphite"] .bg-blue-100\/50 { background-color: rgb(254 243 199 / 0.5) !important; }
+[data-theme="graphite"] .bg-blue-100\/60 { background-color: rgb(254 243 199 / 0.6) !important; }
+[data-theme="graphite"] .bg-blue-50 { background-color: #f8fafc !important; }
+[data-theme="graphite"] .hover\:bg-blue-50:hover { background-color: #f1f5f9 !important; }
+[data-theme="graphite"] .text-blue-700 { color: #1e293b !important; }
+[data-theme="graphite"] .text-blue-800 { color: #0f172a !important; }
+
+/* Focus rings + borders */
+[data-theme="graphite"] .focus\:border-blue-500:focus { border-color: #eab308 !important; }
+[data-theme="graphite"] .focus\:ring-blue-500:focus { --tw-ring-color: #eab308 !important; box-shadow: 0 0 0 2px #eab308 !important; }
+[data-theme="graphite"] .focus\:ring-2.focus\:ring-blue-500:focus { box-shadow: 0 0 0 2px #eab308 !important; }
+

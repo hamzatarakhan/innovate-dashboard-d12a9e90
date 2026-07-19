@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 
-export type ThemeName = 'aurora' | 'ember'
+export type ThemeName = 'aurora' | 'ember' | 'graphite'
 
 export const THEMES: { key: ThemeName; label: string; description: string; swatch: string[] }[] = [
   {
@@ -15,7 +15,14 @@ export const THEMES: { key: ThemeName; label: string; description: string; swatc
     description: 'Warm amber, rose and orange.',
     swatch: ['#ffedd5', '#fecdd3', '#fed7aa', '#ea580c'],
   },
+  {
+    key: 'graphite',
+    label: 'Graphite',
+    description: 'Neutral slate with soft yellow accents.',
+    swatch: ['#f8fafc', '#e2e8f0', '#fde68a', '#334155'],
+  },
 ]
+
 
 const STORAGE_KEY = 'dashboard-theme'
 const DEFAULT: ThemeName = 'aurora'
@@ -35,12 +42,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as ThemeName | null
-      const next = stored === 'ember' || stored === 'aurora' ? stored : DEFAULT
+      const next: ThemeName =
+        stored === 'ember' || stored === 'aurora' || stored === 'graphite' ? stored : DEFAULT
       setThemeState(next)
       applyTheme(next)
     } catch {
       applyTheme(DEFAULT)
     }
+
   }, [])
 
   const setTheme = (t: ThemeName) => {
