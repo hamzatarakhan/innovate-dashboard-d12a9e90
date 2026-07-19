@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from '@tanstack/react-router'
 import { ArrowLeft, Calendar } from 'lucide-react'
 import { BLOGS, type Blog } from '@/data/blogs'
+import { AppShell } from '@/components/dashboard/AppShell'
+
 
 export const Route = createFileRoute('/blogs/$slug')({
   loader: ({ params }): { blog: Blog } => {
