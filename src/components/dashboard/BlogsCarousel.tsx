@@ -35,10 +35,7 @@ export function BlogsCarousel() {
           {BLOGS.map((blog) => (
             <div key={blog.title} className="w-full flex-shrink-0 px-1">
               <img src={blog.cover} alt={blog.title} className="w-full h-28 object-cover rounded-lg mb-3" />
-              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--odoo-brand)' }}>
-                {blog.category}
-              </span>
-              <h4 className="font-semibold text-base mt-1" style={{ color: 'var(--odoo-ink)' }}>{blog.title}</h4>
+              <h4 className="font-semibold text-base" style={{ color: 'var(--odoo-ink)' }}>{blog.title}</h4>
               <p className="text-sm mt-1" style={{ color: 'var(--odoo-muted)' }}>{blog.excerpt}</p>
               <p className="text-xs mt-2" style={{ color: 'var(--odoo-muted)' }}>
                 {blog.author} · {blog.date}
