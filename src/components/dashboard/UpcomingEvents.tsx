@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from '@tanstack/react-router'
 import { Briefcase, Heart, Figma, X, ArrowRight } from 'lucide-react'
 
 export function UpcomingEvents() {
