@@ -357,15 +357,15 @@ body {
 }
 
 [data-theme="graphite"] {
-  --odoo-brand: #334155;
-  --odoo-brand-hover: #0f172a;
-  --odoo-accent: #fde68a;
-  --odoo-accent-hover: #fcd34d;
-  --odoo-accent-ink: #713f12;
-  --odoo-page: #f8fafc;
+  --odoo-brand: #6d0b00;
+  --odoo-brand-hover: #4a0700;
+  --odoo-accent: #c9a24a;
+  --odoo-accent-hover: #b08a35;
+  --odoo-accent-ink: #3a2a08;
+  --odoo-page: #f7f2ea;
   --odoo-surface: #ffffff;
-  --odoo-ink: #0f172a;
-  --odoo-muted: #64748b;
-  --odoo-line: #e2e8f0;
+  --odoo-ink: #1f1a17;
+  --odoo-muted: #6b6058;
+  --odoo-line: #e7ded0;
 }
 
