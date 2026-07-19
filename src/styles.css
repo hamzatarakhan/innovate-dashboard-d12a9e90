@@ -339,3 +339,33 @@ body {
 [data-theme="graphite"] .focus\:ring-blue-500:focus { --tw-ring-color: #eab308 !important; box-shadow: 0 0 0 2px #eab308 !important; }
 [data-theme="graphite"] .focus\:ring-2.focus\:ring-blue-500:focus { box-shadow: 0 0 0 2px #eab308 !important; }
 
+/* ===========================================================
+ * Odoo token overrides per theme — re-skins every surface,
+ * card, button and heading that uses var(--odoo-*).
+ * =========================================================== */
+[data-theme="ember"] {
+  --odoo-brand: #9a3412;
+  --odoo-brand-hover: #7c2d12;
+  --odoo-accent: #fed7aa;
+  --odoo-accent-hover: #fdba74;
+  --odoo-accent-ink: #7c2d12;
+  --odoo-page: #fff7ed;
+  --odoo-surface: #ffffff;
+  --odoo-ink: #1c1917;
+  --odoo-muted: #78716c;
+  --odoo-line: #f5e6d3;
+}
+
+[data-theme="graphite"] {
+  --odoo-brand: #334155;
+  --odoo-brand-hover: #0f172a;
+  --odoo-accent: #fde68a;
+  --odoo-accent-hover: #fcd34d;
+  --odoo-accent-ink: #713f12;
+  --odoo-page: #f8fafc;
+  --odoo-surface: #ffffff;
+  --odoo-ink: #0f172a;
+  --odoo-muted: #64748b;
+  --odoo-line: #e2e8f0;
+}
+
