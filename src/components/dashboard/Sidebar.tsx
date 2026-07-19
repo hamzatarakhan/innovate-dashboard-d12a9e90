@@ -117,9 +117,6 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
           </button>
         </div>
         <div className="flex-1">{nav}</div>
-        <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-center">
-          <span className="text-[11px] font-medium text-white/40">Powered by Odoo 19</span>
-        </div>
       </aside>
     </>
   )
