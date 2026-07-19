@@ -104,6 +104,16 @@ export function NotificationsMenu({ variant = 'light' }: { variant?: 'light' | '
             <li className="px-4 py-8 text-center text-sm text-gray-500">You're all caught up.</li>
           )}
         </ul>
+        <div className="border-t">
+          <button
+            type="button"
+            onClick={() => {}}
+            className="w-full px-4 py-2.5 text-sm font-medium text-center hover:bg-gray-50 transition-colors"
+            style={{ color: 'var(--odoo-brand)' }}
+          >
+            All activities
+          </button>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   )
