@@ -7,13 +7,13 @@ export function UpcomingEvents() {
     <div className="lg:col-span-2 odoo-card p-5 fade-in">
       <div className="flex items-center justify-between mb-4">
         <h3 className="odoo-heading text-base">Upcoming Events</h3>
-        <Link
-          to="/calendar"
-          className="inline-flex items-center gap-1 text-xs font-semibold hover:underline"
+        <span
+          aria-disabled="true"
+          className="inline-flex items-center gap-1 text-xs font-semibold pointer-events-none select-none"
           style={{ color: 'var(--odoo-brand)' }}
         >
           Go to Calendar <ArrowRight className="w-3.5 h-3.5" />
-        </Link>
+        </span>
       </div>
       <div className="space-y-2.5">
         <div className="flex items-center gap-4 odoo-tile p-3">
