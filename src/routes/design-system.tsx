@@ -54,6 +54,7 @@ import {
 } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { AppShell } from '@/components/dashboard/AppShell'
+import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 
 
 export const Route = createFileRoute('/design-system')({
