@@ -1,11 +1,21 @@
 import { useState } from 'react'
-import { Briefcase, Heart, Figma, X } from 'lucide-react'
+import { Link } from '@tanstack/react-router'
+import { Briefcase, Heart, Figma, X, ArrowRight } from 'lucide-react'
 
 export function UpcomingEvents() {
   const [rsvpFor, setRsvpFor] = useState<string | null>(null)
   return (
     <div className="lg:col-span-2 odoo-card p-5 fade-in">
-      <h3 className="odoo-heading text-base mb-4">Upcoming Events</h3>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="odoo-heading text-base">Upcoming Events</h3>
+        <Link
+          to="/calendar"
+          className="inline-flex items-center gap-1 text-xs font-semibold hover:underline"
+          style={{ color: 'var(--odoo-brand)' }}
+        >
+          Go to Calendar <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      </div>
       <div className="space-y-2.5">
         <div className="flex items-center gap-4 odoo-tile p-3">
           <div className="w-11 h-11 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
