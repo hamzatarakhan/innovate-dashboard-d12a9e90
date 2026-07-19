@@ -17,9 +17,9 @@ export const THEMES: { key: ThemeName; label: string; description: string; swatc
   },
   {
     key: 'graphite',
-    label: 'Graphite',
-    description: 'Neutral slate with soft yellow accents.',
-    swatch: ['#f8fafc', '#e2e8f0', '#fde68a', '#334155'],
+    label: 'Heritage',
+    description: 'Deep maroon with gold and cream.',
+    swatch: ['#f7f2ea', '#c9a24a', '#8a1a0a', '#6d0b00'],
   },
 ]
 
