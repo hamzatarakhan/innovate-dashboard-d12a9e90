@@ -42,12 +42,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as ThemeName | null
-      const next = stored === 'ember' || stored === 'aurora' ? stored : DEFAULT
+      const next: ThemeName =
+        stored === 'ember' || stored === 'aurora' || stored === 'graphite' ? stored : DEFAULT
       setThemeState(next)
       applyTheme(next)
     } catch {
       applyTheme(DEFAULT)
     }
+
   }, [])
 
   const setTheme = (t: ThemeName) => {
