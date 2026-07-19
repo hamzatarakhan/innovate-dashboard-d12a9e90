@@ -228,6 +228,14 @@ function DesignSystemPage() {
           </p>
         </section>
 
+        {/* Color palette themes */}
+        <section>
+          <SectionTitle n="★" title="Color Palettes" sub="Pick a palette — it applies instantly across the whole app and is saved to this browser." />
+          <div className="odoo-card p-5">
+            <ThemeSwitcher />
+          </div>
+        </section>
+
         {/* 02 · Brand color */}
         <section>
           <SectionTitle n="02" title="Brand Colors" sub="Navy is the primary; sand is the single accent. No other brand colors." />
