@@ -16,6 +16,8 @@ import {
   X,
 } from 'lucide-react'
 import mosdLogo from '@/assets/mosd-logo.jpeg.asset.json'
+import sealLogo from '@/assets/seal-of-excellence.jpeg.asset.json'
+
 
 // Colored app icons on a dark navy sidebar — mirrors the Odoo app menu.
 const navItems = [
