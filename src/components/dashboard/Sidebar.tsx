@@ -126,13 +126,13 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
           <img
             src={sealLogo.url}
             alt="King Abdullah II Award Seal of Excellence"
-            className="h-16 w-16 rounded-full bg-white/95 p-1 object-contain shadow-sm"
+            className="h-20 w-20 rounded-full bg-white/95 p-1.5 object-contain shadow-sm"
             loading="lazy"
           />
           <img
             src={mosdLogo.url}
             alt="Ministry of Social Development"
-            className="h-16 w-16 rounded-full bg-white/95 p-1 object-contain shadow-sm"
+            className="h-20 w-20 rounded-full bg-white/95 p-1.5 object-contain shadow-sm"
             loading="lazy"
           />
         </div>
