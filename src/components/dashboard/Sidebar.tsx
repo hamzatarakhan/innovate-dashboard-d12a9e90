@@ -15,6 +15,7 @@ import {
   Palette,
   X,
 } from 'lucide-react'
+import mosdLogo from '@/assets/mosd-logo.jpeg.asset.json'
 
 // Colored app icons on a dark navy sidebar — mirrors the Odoo app menu.
 const navItems = [
@@ -117,6 +118,16 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
           </button>
         </div>
         <div className="flex-1">{nav}</div>
+
+        {/* Ministry logo */}
+        <div className="mt-4 pt-4 border-t border-white/10 flex justify-center">
+          <img
+            src={mosdLogo.url}
+            alt="Ministry of Social Development"
+            className="h-16 w-16 rounded-full bg-white/95 p-1 object-contain shadow-sm"
+            loading="lazy"
+          />
+        </div>
       </aside>
     </>
   )
