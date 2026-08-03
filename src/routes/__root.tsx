@@ -13,7 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "../components/ThemeProvider";
 
-const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('dashboard-theme');if(t!=='ember'&&t!=='aurora')t='aurora';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','aurora');}})();`;
+const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('dashboard-theme');var valid=['aurora','ember','graphite'].indexOf(t)>-1;document.documentElement.setAttribute('data-theme',valid?t:'aurora');}catch(e){document.documentElement.setAttribute('data-theme','aurora');}})();`;
 
 function NotFoundComponent() {
   return (
