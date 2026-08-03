@@ -119,8 +119,14 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
         </div>
         <div className="flex-1">{nav}</div>
 
-        {/* Ministry logo */}
-        <div className="mt-4 pt-4 border-t border-white/10 flex justify-center">
+        {/* Seals / Ministry logo */}
+        <div className="mt-4 pt-4 border-t border-white/10 flex flex-col items-center gap-3">
+          <img
+            src={sealLogo.url}
+            alt="King Abdullah II Award Seal of Excellence"
+            className="h-14 w-14 rounded-full bg-white/95 p-1 object-contain shadow-sm"
+            loading="lazy"
+          />
           <img
             src={mosdLogo.url}
             alt="Ministry of Social Development"
@@ -128,6 +134,7 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
             loading="lazy"
           />
         </div>
+
       </aside>
     </>
   )
