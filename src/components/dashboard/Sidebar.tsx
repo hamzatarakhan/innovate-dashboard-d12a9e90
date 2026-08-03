@@ -126,7 +126,7 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
           <img
             src={sealLogo.url}
             alt="King Abdullah II Award Seal of Excellence"
-            className="h-14 w-14 rounded-full bg-white/95 p-1 object-contain shadow-sm"
+            className="h-16 w-16 rounded-full bg-white/95 p-1 object-contain shadow-sm"
             loading="lazy"
           />
           <img
