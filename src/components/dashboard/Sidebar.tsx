@@ -13,22 +13,23 @@ import {
   LayoutGrid,
   Settings,
   Palette,
+  User,
   X,
 } from 'lucide-react'
-import mosdLogo from '@/assets/mosd-logo.jpeg.asset.json'
-import sealLogo from '@/assets/seal-of-excellence.jpeg.asset.json'
 
 
 // Colored app icons on a dark navy sidebar — mirrors the Odoo app menu.
+// Order follows the required side-menu sequence; anything not in that list goes after.
 const navItems = [
-  { title: 'Dashboard', url: '/', icon: LayoutDashboard, color: 'text-white', enabled: true },
-  { title: 'Discuss', url: '/discuss', icon: MessageCircle, color: 'text-orange-400', enabled: false },
-  { title: 'Calendar', url: '/calendar', icon: Calendar, color: 'text-rose-400', enabled: false },
-  { title: 'To-do', url: '/todo', icon: CheckSquare, color: 'text-teal-300', enabled: false },
-  { title: 'Library', url: '/library', icon: BookOpen, color: 'text-blue-400', enabled: false },
-  { title: 'Tasks', url: '/tasks', icon: ListTodo, color: 'text-cyan-300', enabled: false },
   { title: 'Internal Portal', url: '/internal-portal', icon: Globe, color: 'text-emerald-300', enabled: false },
+  { title: 'My Profile', url: '/preferences', icon: User, color: 'text-fuchsia-300', enabled: false },
+  { title: 'My Tasks', url: '/todo', icon: CheckSquare, color: 'text-teal-300', enabled: false },
+  { title: 'Calendar', url: '/calendar', icon: Calendar, color: 'text-rose-400', enabled: false },
+  { title: 'Discussion', url: '/discuss', icon: MessageCircle, color: 'text-orange-400', enabled: false },
+  { title: 'Library', url: '/library', icon: BookOpen, color: 'text-blue-400', enabled: false },
   { title: 'Surveys', url: '/surveys', icon: FileQuestion, color: 'text-sky-400', enabled: false },
+  { title: 'Shared Tasks', url: '/tasks', icon: ListTodo, color: 'text-cyan-300', enabled: false },
+  { title: 'Dashboard', url: '/', icon: LayoutDashboard, color: 'text-white', enabled: true },
   { title: 'Employees', url: '/employees', icon: Users, color: 'text-violet-300', enabled: false },
   { title: 'Apps', url: '/apps', icon: LayoutGrid, color: 'text-indigo-300', enabled: false },
   { title: 'Settings', url: '/settings', icon: Settings, color: 'text-slate-300', enabled: false },
@@ -120,23 +121,6 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
           </button>
         </div>
         <div className="flex-1">{nav}</div>
-
-        {/* Seals / Ministry logo */}
-        <div className="mt-4 pt-4 border-t border-white/10 flex flex-col items-center gap-3">
-          <img
-            src={sealLogo.url}
-            alt="King Abdullah II Award Seal of Excellence"
-            className="h-24 w-24 rounded-full bg-white/95 p-1.5 object-contain shadow-sm"
-            loading="lazy"
-          />
-          <img
-            src={mosdLogo.url}
-            alt="Ministry of Social Development"
-            className="h-24 w-24 rounded-full bg-white/95 p-1.5 object-contain shadow-sm"
-            loading="lazy"
-          />
-        </div>
-
       </aside>
     </>
   )
