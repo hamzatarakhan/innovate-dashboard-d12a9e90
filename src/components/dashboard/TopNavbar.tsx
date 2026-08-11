@@ -3,8 +3,8 @@ import { LayoutGrid, Menu } from 'lucide-react'
 import { MessagesMenu } from './MessagesMenu'
 import { NotificationsMenu } from './NotificationsMenu'
 import { UserMenu } from './UserMenu'
-import mosdLogo from '@/assets/mosd-logo.jpeg.asset.json'
-import sealLogo from '@/assets/seal-of-excellence.jpeg.asset.json'
+import mosdLogo from '@/assets/mosd-logo.svg'
+import sealLogo from '@/assets/seal-of-excellence.svg'
 
 export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
   return (
@@ -33,13 +33,13 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
       {/* App brand — seals replace the "Dashboard" label */}
       <Link to="/" aria-label="Dashboard" className="flex items-center gap-2 pl-1 pr-2">
         <img
-          src={sealLogo.url}
+          src={sealLogo}
           alt="King Abdullah II Award Seal of Excellence"
           className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white/95 p-1 object-contain"
           loading="lazy"
         />
         <img
-          src={mosdLogo.url}
+          src={mosdLogo}
           alt="Ministry of Social Development"
           className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white/95 p-1 object-contain"
           loading="lazy"
