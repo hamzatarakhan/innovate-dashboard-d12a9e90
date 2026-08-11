@@ -3,8 +3,8 @@ import { LayoutGrid, Menu } from 'lucide-react'
 import { MessagesMenu } from './MessagesMenu'
 import { NotificationsMenu } from './NotificationsMenu'
 import { UserMenu } from './UserMenu'
-import mosdLogo from '@/assets/mosd-logo.svg'
-import sealLogo from '@/assets/seal-of-excellence.svg'
+import mosdLogo from '@/assets/mosd-logo.jpeg'
+import sealLogo from '@/assets/seal-of-excellence.jpeg'
 
 export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
   return (
