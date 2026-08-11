@@ -31,17 +31,17 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
       </Link>
 
       {/* App brand — seals replace the "Dashboard" label */}
-      <Link to="/" aria-label="Dashboard" className="flex items-center gap-1.5 pl-1 pr-2">
+      <Link to="/" aria-label="Dashboard" className="flex items-center gap-2 pl-1 pr-2">
         <img
           src={sealLogo.url}
           alt="King Abdullah II Award Seal of Excellence"
-          className="h-8 w-8 rounded-full bg-white/95 p-0.5 object-contain"
+          className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white/95 p-1 object-contain"
           loading="lazy"
         />
         <img
           src={mosdLogo.url}
           alt="Ministry of Social Development"
-          className="h-8 w-8 rounded-full bg-white/95 p-0.5 object-contain"
+          className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white/95 p-1 object-contain"
           loading="lazy"
         />
       </Link>
