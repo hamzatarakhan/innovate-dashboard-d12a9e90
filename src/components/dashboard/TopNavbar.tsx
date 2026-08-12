@@ -3,6 +3,7 @@ import { LayoutGrid, Menu } from 'lucide-react'
 import { MessagesMenu } from './MessagesMenu'
 import { NotificationsMenu } from './NotificationsMenu'
 import { UserMenu } from './UserMenu'
+import sealLogo from '@/assets/seal-of-excellence.jpeg'
 
 export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
   return (
@@ -27,6 +28,14 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
       >
         <LayoutGrid className="w-5 h-5" />
       </Link>
+
+      {/* Seal — small, beside the waffle icon */}
+      <img
+        src={sealLogo}
+        alt="King Abdullah II Award Seal of Excellence"
+        className="h-8 w-8 rounded-full object-cover"
+        loading="lazy"
+      />
 
       {/* Systray */}
       <div className="ml-auto flex items-center gap-1 sm:gap-2 pr-1">
