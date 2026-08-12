@@ -28,11 +28,6 @@ export function TopNavbar({ onMenuClick }: { onMenuClick: () => void }) {
         <LayoutGrid className="w-5 h-5" />
       </Link>
 
-      {/* App brand */}
-      <Link to="/" className="flex items-center gap-2 pl-1 pr-2">
-        <span className="font-semibold tracking-tight hidden sm:inline">Dashboard</span>
-      </Link>
-
       {/* Systray */}
       <div className="ml-auto flex items-center gap-1 sm:gap-2 pr-1">
         <MessagesMenu variant="navbar" />

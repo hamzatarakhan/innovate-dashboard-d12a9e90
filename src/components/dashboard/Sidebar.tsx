@@ -108,11 +108,27 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
 
       {/* Sidebar / drawer */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw] p-3 flex flex-col flex-shrink-0 overflow-y-auto transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 lg:z-auto lg:w-60 lg:max-w-none ${
+        className={`fixed inset-y-0 left-0 z-50 w-72 max-w-[80vw] px-3 pb-3 flex flex-col flex-shrink-0 overflow-y-auto transform transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 lg:z-auto lg:w-60 lg:max-w-none ${
           open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
         style={{ backgroundColor: 'var(--odoo-brand)' }}
       >
+        {/* Brand — larger seals; only affects sidebar height, not the shared top navbar */}
+        <Link to="/" onClick={onClose} className="flex items-center gap-3 pb-4 mb-2 border-b border-white/10">
+          <img
+            src={sealLogo}
+            alt="King Abdullah II Award Seal of Excellence"
+            className="h-20 w-20 rounded-full object-cover"
+            loading="lazy"
+          />
+          <img
+            src={mosdLogo}
+            alt="Ministry of Social Development"
+            className="h-20 w-20 rounded-full object-cover"
+            loading="lazy"
+          />
+        </Link>
+
         <div className="lg:hidden flex justify-end mb-1">
           <button
             onClick={onClose}
@@ -122,22 +138,6 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
             <X className="w-5 h-5" />
           </button>
         </div>
-
-        {/* Brand — seals replace the "Dashboard" label */}
-        <Link to="/" onClick={onClose} className="flex items-center gap-2 px-1 pb-3 mb-2 border-b border-white/10">
-          <img
-            src={sealLogo}
-            alt="King Abdullah II Award Seal of Excellence"
-            className="h-10 w-10 rounded-full bg-white/95 p-1 object-contain"
-            loading="lazy"
-          />
-          <img
-            src={mosdLogo}
-            alt="Ministry of Social Development"
-            className="h-10 w-10 rounded-full bg-white/95 p-1 object-contain"
-            loading="lazy"
-          />
-        </Link>
 
         <div className="flex-1">{nav}</div>
       </aside>
