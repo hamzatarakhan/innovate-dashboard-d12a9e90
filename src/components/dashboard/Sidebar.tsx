@@ -16,6 +16,8 @@ import {
   User,
   X,
 } from 'lucide-react'
+import mosdLogo from '@/assets/mosd-logo.jpeg'
+import sealLogo from '@/assets/seal-of-excellence.jpeg'
 
 
 // Colored app icons on a dark navy sidebar — mirrors the Odoo app menu.
@@ -120,6 +122,23 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
             <X className="w-5 h-5" />
           </button>
         </div>
+
+        {/* Brand — seals replace the "Dashboard" label */}
+        <Link to="/" onClick={onClose} className="flex items-center gap-2 px-1 pb-3 mb-2 border-b border-white/10">
+          <img
+            src={sealLogo}
+            alt="King Abdullah II Award Seal of Excellence"
+            className="h-10 w-10 rounded-full bg-white/95 p-1 object-contain"
+            loading="lazy"
+          />
+          <img
+            src={mosdLogo}
+            alt="Ministry of Social Development"
+            className="h-10 w-10 rounded-full bg-white/95 p-1 object-contain"
+            loading="lazy"
+          />
+        </Link>
+
         <div className="flex-1">{nav}</div>
       </aside>
     </>
